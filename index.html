@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <title>PGPkeygenerator.online - Generate OpenPGP key pair online</title>
+    <style>
+        body {
+            width: 700px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>PGPkeygenerator.online</h1>
+    <h2>Generate OpenPGP key pair</h2>
+
+    <div>
+        <label for="private_key_textarea">
+            <h3>Private Key</h3>
+        </label>
+        <button copycontent="private_key_textarea" onclick="copyToClipboard(this)">Copy</button>
+        <textarea id="private_key_textarea" name="private_key_textarea" rows="10" cols="50"></textarea>
+    </div>
+
+    <div>
+        <label for="public_key_textarea">
+            <h3>Public Key</h3>
+        </label>
+        <button copycontent="public_key_textarea" onclick="copyToClipboard(this)">Copy</button>
+        <textarea id="public_key_textarea" name="public_key_textarea" rows="10" cols="50"></textarea>
+    </div>
+
+    <div>
+        <label for="revocation_certificate_textarea">
+            <h3>Revocation Certificate</h3>
+        </label>
+        <button copycontent="revocation_certificate_textarea" onclick="copyToClipboard(this)">Copy</button>
+        <textarea id="revocation_certificate_textarea" name="revocation_certificate_textarea" rows="10"
+            cols="50"></textarea>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/openpgp@5.10.1/dist/openpgp.min.js"></script>
+
+    <script>
+
+        function copyToClipboard(event) {
+
+            let textareaName = event.getAttribute('copycontent');
+
+            let textarea = document.querySelector("#"+textareaName);
+
+            // Select the text area
+            textarea.select();
+            textarea.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text of textarea
+            navigator.clipboard.writeText(textarea.value);
+
+            // Alert the copied text
+            alert(textarea.labels[0].textContent.trimStart().trimEnd() + " successfully copied to clipboard.");
+        }
+
+        document.addEventListener("DOMContentLoaded", (event) => {
+
+
+
+            let private_key_textarea = document.querySelector("#private_key_textarea");
+            let public_key_textarea = document.querySelector("#public_key_textarea");
+            let revocation_certificate_textarea = document.querySelector("#revocation_certificate_textarea");
+
+            (async () => {
+
+                const { privateKey, publicKey, revocationCertificate } = await openpgp.generateKey({
+                    type: 'ecc', // Type of the key, defaults to ECC
+                    curve: 'curve25519', // ECC curve name, defaults to curve25519
+                    userIDs: [{ name: 'Jon Smith', email: 'jon@example.com' }], // you can pass multiple user IDs
+                    passphrase: 'super long and hard to guess secret', // protects the private key
+                    format: 'armored' // output key format, defaults to 'armored' (other options: 'binary' or 'object')
+                });
+
+                private_key_textarea.value = privateKey;     // '-----BEGIN PGP PRIVATE KEY BLOCK ... '
+                public_key_textarea.value = publicKey;
+                revocation_certificate_textarea.value = revocationCertificate;
+
+            })();
+
+        });
+
+    </script>
+</body>
+
+</html>
