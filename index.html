@@ -22,8 +22,8 @@
             <h3>Private Key</h3>
         </label>
 		<div>
-        <button copycontent="private_key_textarea" onclick="copyToClipboard(this)">Copy</button>
-		<button>Download File</button>
+        <button content="private_key_textarea" onclick="copyToClipboard(this)">Copy</button>
+		<button content="private_key_textarea" onclick="downloadFile(this)">Download File</button>
 		</div>
         <textarea id="private_key_textarea" name="private_key_textarea" rows="10" cols="50"></textarea>
     </div>
@@ -33,8 +33,8 @@
             <h3>Public Key</h3>
         </label>
 		<div>
-        <button copycontent="public_key_textarea" onclick="copyToClipboard(this)">Copy</button>
-		<button>Download File</button>
+        <button content="public_key_textarea" onclick="copyToClipboard(this)">Copy</button>
+		<button content="public_key_textarea" onclick="downloadFile(this)">Download File</button>
 		</div>
         <textarea id="public_key_textarea" name="public_key_textarea" rows="10" cols="50"></textarea>
     </div>
@@ -44,8 +44,8 @@
             <h3>Revocation Certificate</h3>
         </label>
         <div>
-		<button copycontent="revocation_certificate_textarea" onclick="copyToClipboard(this)">Copy</button>
-   		<button>Download File</button>
+		<button content="revocation_certificate_textarea" onclick="copyToClipboard(this)">Copy</button>
+   		<button content="revocation_certificate_textarea" onclick="downloadFile(this)">Download File</button>
 		</div>
 		<textarea id="revocation_certificate_textarea" name="revocation_certificate_textarea" rows="10"
             cols="50"></textarea>
@@ -55,9 +55,22 @@
 
     <script>
 
-        function copyToClipboard(event) {
+		const downloadFile = (event) => {
+			
+			let textareaName = event.getAttribute('content');
 
-            let textareaName = event.getAttribute('copycontent');
+			const link = document.createElement("a");
+			const content = document.querySelector("#"+textareaName).value;
+			const file = new Blob([content], { type: 'text/plain' });
+			link.href = URL.createObjectURL(file);
+			link.download = textareaName + ".txt";
+			link.click();
+			URL.revokeObjectURL(link.href);
+		};
+
+        const copyToClipboard = (event) => {
+
+            let textareaName = event.getAttribute('content');
 
             let textarea = document.querySelector("#"+textareaName);
 
@@ -73,8 +86,6 @@
         }
 
         document.addEventListener("DOMContentLoaded", (event) => {
-
-
 
             let private_key_textarea = document.querySelector("#private_key_textarea");
             let public_key_textarea = document.querySelector("#public_key_textarea");
