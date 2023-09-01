@@ -7,6 +7,9 @@
             width: 700px;
             margin: auto;
         }
+		textarea{
+			resize: none;
+		}
     </style>
 </head>
 
@@ -18,7 +21,10 @@
         <label for="private_key_textarea">
             <h3>Private Key</h3>
         </label>
+		<div>
         <button copycontent="private_key_textarea" onclick="copyToClipboard(this)">Copy</button>
+		<button>Download File</button>
+		</div>
         <textarea id="private_key_textarea" name="private_key_textarea" rows="10" cols="50"></textarea>
     </div>
 
@@ -26,7 +32,10 @@
         <label for="public_key_textarea">
             <h3>Public Key</h3>
         </label>
+		<div>
         <button copycontent="public_key_textarea" onclick="copyToClipboard(this)">Copy</button>
+		<button>Download File</button>
+		</div>
         <textarea id="public_key_textarea" name="public_key_textarea" rows="10" cols="50"></textarea>
     </div>
 
@@ -34,8 +43,11 @@
         <label for="revocation_certificate_textarea">
             <h3>Revocation Certificate</h3>
         </label>
-        <button copycontent="revocation_certificate_textarea" onclick="copyToClipboard(this)">Copy</button>
-        <textarea id="revocation_certificate_textarea" name="revocation_certificate_textarea" rows="10"
+        <div>
+		<button copycontent="revocation_certificate_textarea" onclick="copyToClipboard(this)">Copy</button>
+   		<button>Download File</button>
+		</div>
+		<textarea id="revocation_certificate_textarea" name="revocation_certificate_textarea" rows="10"
             cols="50"></textarea>
     </div>
 
@@ -47,7 +59,7 @@
 
             let textareaName = event.getAttribute('copycontent');
 
-            let textarea = document.querySelector("#" + textareaName);
+            let textarea = document.querySelector("#"+textareaName);
 
             // Select the text area
             textarea.select();
