@@ -6,50 +6,100 @@
         body {
             width: 700px;
             margin: auto;
+            background: #af85ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #272727;
         }
 
         textarea {
             resize: none;
+            border: 0px;
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        .button-holder {
+            margin: 10px 0px 10px 0px;
+        }
+
+        button {
+            padding: 10px;
+            border-radius: 15px;
+            border: 0px;
+        }
+
+        #keys-holder {
+            padding: 10px;
+            border: 0px solid #272727;
+            border-radius: 15px;
+            background-color: #efefef;
+        }
+
+        .copy-button {
+            background: linear-gradient(90deg, rgb(255 255 255) 0%, rgb(255 231 47) 0%, rgb(10 0 0) 100%);
+            color: white;
+        }
+
+        .download-button {
+            background: linear-gradient(90deg, rgb(255 255 255) 0%, rgb(255 100 47) 0%, rgb(10 0 0) 100%);
+            color: white;
+        }
+
+        #title-holder {
+            width: 400px;
+            margin: auto;
         }
     </style>
 </head>
 
 <body>
-    <h1>PGPkeygenerator.online</h1>
-    <h2>Generate OpenPGP key pair</h2>
 
-    <div>
-        <label for="private_key_textarea">
-            <h3>Private Key</h3>
-        </label>
-        <div>
-            <button content="private_key_textarea" onclick="copyToClipboard(this)">Copy</button>
-            <button content="private_key_textarea" onclick="downloadFile(this)">Download File</button>
-        </div>
-        <textarea id="private_key_textarea" name="private_key_textarea" rows="10" cols="50"></textarea>
+    <div id="title-holder">
+        <h1>PGPkeygenerator.online</h1>
+        <p>Generate OpenPGP key pair</p>
     </div>
 
-    <div>
-        <label for="public_key_textarea">
-            <h3>Public Key</h3>
-        </label>
+    <div id="keys-holder">
         <div>
-            <button content="public_key_textarea" onclick="copyToClipboard(this)">Copy</button>
-            <button content="public_key_textarea" onclick="downloadFile(this)">Download File</button>
+            <label for="private-key-textarea">
+                <h3>Private Key</h3>
+            </label>
+            <div class="button-holder">
+                <button class="copy-button" type="button" content="private-key-textarea"
+                    onclick="copyToClipboard(this)">Copy</button>
+                <button class="download-button" type="button" content="private-key-textarea"
+                    onclick="downloadFile(this)">Download File</button>
+            </div>
+            <textarea id="private-key-textarea" name="private-key-textarea" rows="10" cols="40"></textarea>
         </div>
-        <textarea id="public_key_textarea" name="public_key_textarea" rows="10" cols="50"></textarea>
-    </div>
 
-    <div>
-        <label for="revocation_certificate_textarea">
-            <h3>Revocation Certificate</h3>
-        </label>
         <div>
-            <button content="revocation_certificate_textarea" onclick="copyToClipboard(this)">Copy</button>
-            <button content="revocation_certificate_textarea" onclick="downloadFile(this)">Download File</button>
+            <label for="public-key-textarea">
+                <h3>Public Key</h3>
+            </label>
+            <div class="button-holder">
+                <button class="copy-button" type="button" content="public-key-textarea"
+                    onclick="copyToClipboard(this)">Copy</button>
+                <button class="download-button" type="button" content="public-key-textarea"
+                    onclick="downloadFile(this)">Download File</button>
+            </div>
+            <textarea id="public-key-textarea" name="public-key-textarea" rows="10" cols="40"></textarea>
         </div>
-        <textarea id="revocation_certificate_textarea" name="revocation_certificate_textarea" rows="10"
-            cols="50"></textarea>
+
+        <div>
+            <label for="revocation-certificate-textarea">
+                <h3>Revocation Certificate</h3>
+            </label>
+            <div class="button-holder">
+                <button class="copy-button" type="button" content="revocation-certificate-textarea"
+                    onclick="copyToClipboard(this)">Copy</button>
+                <button class="download-button" type="button" content="revocation-certificate-textarea"
+                    onclick="downloadFile(this)">Download
+                    File</button>
+            </div>
+            <textarea id="revocation-certificate-textarea" name="revocation-certificate-textarea" rows="10"
+                cols="40"></textarea>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/openpgp@5.10.1/dist/openpgp.min.js"></script>
@@ -64,7 +114,7 @@
             const content = document.querySelector("#" + textareaName).value;
             const file = new Blob([content], { type: 'text/plain' });
             link.href = URL.createObjectURL(file);
-            link.download = textareaName.replace("_textarea", "") + ".asc";
+            link.download = textareaName.replace("-textarea", "") + ".asc";
             link.click();
             URL.revokeObjectURL(link.href);
         };
@@ -88,9 +138,9 @@
 
         document.addEventListener("DOMContentLoaded", (event) => {
 
-            let private_key_textarea = document.querySelector("#private_key_textarea");
-            let public_key_textarea = document.querySelector("#public_key_textarea");
-            let revocation_certificate_textarea = document.querySelector("#revocation_certificate_textarea");
+            let privateKeyTextarea = document.querySelector("#private-key-textarea");
+            let publicKeyTextarea = document.querySelector("#public-key-textarea");
+            let revocationCertificateTextarea = document.querySelector("#revocation-certificate-textarea");
 
             (async () => {
 
@@ -102,9 +152,9 @@
                     format: 'armored' // output key format, defaults to 'armored' (other options: 'binary' or 'object')
                 });
 
-                private_key_textarea.value = privateKey;     // '-----BEGIN PGP PRIVATE KEY BLOCK ... '
-                public_key_textarea.value = publicKey;
-                revocation_certificate_textarea.value = revocationCertificate;
+                privateKeyTextarea.value = privateKey;     // '-----BEGIN PGP PRIVATE KEY BLOCK ... '
+                publicKeyTextarea.value = publicKey;
+                revocationCertificateTextarea.value = revocationCertificate;
 
             })();
 
