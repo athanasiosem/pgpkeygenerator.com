@@ -1,13 +1,15 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <title>PGPkeygenerator.online - Generate OpenPGP key pair online</title>
     <style>
         body {
-            width: 700px;
+            width: 780px;
             margin: auto;
-            background: #af85ff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='48' viewBox='0 0 60 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='fancy-rectangles' fill='%23efefef' fill-opacity='1'%3E%3Cpath d='M6 12h6v12H6V12zm12 0h6v12h-6V12zm6-12h6v12h-6V0zM12 0h6v12h-6V0zm0 24h6v12h-6V24zM0 0h6v12H0V0zm6 36h6v12H6V36zm12 0h6v12h-6V36zm12-12h6v12h-6V24zM42 0h6v12h-6V0zm-6 12h6v12h-6V12zm12 0h6v12h-6V12zM36 36h6v12h-6V36zm12 0h6v12h-6V36zm-6-12h6v12h-6V24zm12 0h6v12h-6V24z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            font-family: 'Inter', 'Inter', Helvetica, sans-serif;
             color: #272727;
         }
 
@@ -28,26 +30,64 @@
             border: 0px;
         }
 
+        .title {
+            margin: 0px;
+            margin-bottom: 10px;
+        }
+
         #keys-holder {
-            padding: 10px;
-            border: 0px solid #272727;
+            padding: 20px 40px 20px 40px;
+            border: 2px solid #cdcdcd;
             border-radius: 15px;
             background-color: #efefef;
+            clear: both;
         }
 
         .copy-button {
-            background: linear-gradient(90deg, rgb(255 255 255) 0%, rgb(255 231 47) 0%, rgb(10 0 0) 100%);
+            background: linear-gradient(90deg, rgb(255 255 255) 0%, rgb(14 233 195) 0%, rgb(14 233 195) 100%);
             color: white;
         }
 
         .download-button {
-            background: linear-gradient(90deg, rgb(255 255 255) 0%, rgb(255 100 47) 0%, rgb(10 0 0) 100%);
+            background: linear-gradient(90deg, rgb(255 255 255) 0%, rgb(255, 102, 0) 0%, rgb(255, 102, 0) 100%);
             color: white;
         }
 
         #title-holder {
-            width: 400px;
-            margin: auto;
+            background-color: #efefef;
+            padding: 15px;
+            margin: 20px 0px;
+            text-align: center;
+            border-radius: 15px;
+            border: 2px solid #cdcdcd;
+        }
+
+        #copyright-holder {
+            margin-top: 10px;
+        }
+
+        html .popup-body {
+            text-align: left;
+        }
+
+        html .popup-body p {
+            margin: 5px;
+        }
+
+        html .popup.about .popup-body {
+            font-size: unset;
+            margin-bottom: 15px;
+        }
+
+        html .popup.about .popup-content {
+            background-color: #ffffff;
+            width: min(600px, 90vw);
+        }
+
+        html .popup-title {
+            margin-top: 22px;
+            font-size: min(20px, 11vw);
+            font-weight: 600;
         }
     </style>
 </head>
@@ -55,8 +95,9 @@
 <body>
 
     <div id="title-holder">
-        <h1>PGPkeygenerator.online</h1>
-        <p>Generate OpenPGP key pair</p>
+        <h1 class="title">PGPkeygenerator.online</h1>
+        <span>PGPkeygenerator.online is a <u>free</u>, <u>online</u> and <u>secure</u> PGP key generator</u>.</span><br/>
+        <span>All code <u>runs on the client-side</u>. The <u>OpenPGP.js</u> library is used.</span><br/>
     </div>
 
     <div id="keys-holder">
@@ -100,11 +141,35 @@
             <textarea id="revocation-certificate-textarea" name="revocation-certificate-textarea" rows="10"
                 cols="40"></textarea>
         </div>
+
     </div>
 
+    <div id="copyright-holder">Copyright 2023 - Athanasios Emmanouilidis</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@simondmc/popup-js@1.4.2/popup.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/openpgp@5.10.1/dist/openpgp.min.js"></script>
 
     <script>
+
+        const about = new Popup({
+            id: "about",
+            title: "About PGPkeygenerator.online",
+            content: `✓ PGPkeygenerator.online is <u>a free and online PGP key generator</u>.
+            ✓ You can <u>create PGP keys</u>.
+            ✓ All code <u>runs on the client-side</u> so it is <u>100% secure</u>.
+            ✓ The <u>OpenPGP.js</u> package is used.`,
+        });
+
+        const who = new Popup({
+            id: "who",
+            title: "Who we are",
+            content: `I am Athanasios Emmanouilidis, a Software Engineer from Greece.`,
+        });
+
+        const showPopup = (name) => {
+            if (name == "about")
+                about.show();
+        };
 
         const downloadFile = (event) => {
 
