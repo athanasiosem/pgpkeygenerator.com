@@ -15,7 +15,7 @@
 
         textarea {
             resize: none;
-            border: 0px;
+            border: 1px solid #272727;
             padding: 10px;
             border-radius: 15px;
         }
@@ -27,20 +27,20 @@
         button {
             padding: 10px;
             border-radius: 15px;
-            border: 0px;
+            border: 1px solid #272727;
         }
 
         .title {
             margin: 0px;
             margin-bottom: 10px;
+            font-size: 24px;
         }
 
         #keys-holder {
-            padding: 20px 40px 20px 40px;
-            border: 2px solid #cdcdcd;
+            padding: 0px 40px 20px 40px;
+            border: 1px solid #272727;
             border-radius: 15px;
             background-color: #efefef;
-            clear: both;
         }
 
         .copy-button {
@@ -56,10 +56,18 @@
         #title-holder {
             background-color: #efefef;
             padding: 15px;
-            margin: 20px 0px;
             text-align: center;
             border-radius: 15px;
-            border: 2px solid #cdcdcd;
+            border: 1px solid #272727;
+        }
+
+        #parameters-holder {
+            background-color: #efefef;
+            padding: 15px;
+            margin: 20px 0px;
+            text-align: left;
+            border-radius: 15px;
+            border: 1px solid #272727;
         }
 
         #copyright-holder {
@@ -89,18 +97,80 @@
             font-size: min(20px, 11vw);
             font-weight: 600;
         }
+
+        #parameters-holder label {
+            display: block;
+            margin: 5px 0px;
+        }
+
+        #generate-keys-button {
+            padding: 48px;
+            border-radius: 15px;
+            border: 1px solid gray;
+            margin: 20px 0px;
+            color: white;
+            background: #272727;
+        }
+
+        #parameters-holder select,
+        #parameters-holder input {
+            padding: 5px;
+            border:1px solid #272727;
+            border-radius:5px;
+        }
+
+        #parameters-holder div {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
 <body>
 
-    <div id="title-holder">
-        <h1 class="title">PGPkeygenerator.online</h1>
-        <span>PGPkeygenerator.online is a <u>free</u>, <u>online</u> and <u>secure</u> PGP key generator</u>.</span><br/>
-        <span>All code <u>runs on the client-side</u>. The <u>OpenPGP.js</u> library is used.</span><br/>
+    <div style="width:340px;float:left;">
+
+        <div id="title-holder">
+            <h1 class="title">PGPkeygenerator.online</h1>
+            <span>PGPkeygenerator.online is a <u>free</u>, <u>online</u> and <u>secure</u> PGP key
+                generator</u>.</span><br />
+            <span>All code <u>runs on the client-side</u>. The <u>OpenPGP.js</u> library is used.</span><br />
+        </div>
+
+        <div id="parameters-holder">
+
+            <div>
+                <label for="options-type">Type</label>
+                <select name="options-type" id="options-type">
+                    <option value="ecc">ECC</option>
+                    <option value="rsa">RSA</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="options-name">Name</label>
+                <input type="text" id="options-name">
+            </div>
+
+            <div>
+                <label for="options-email">Email</label>
+                <input type="text" id="options-email">
+            </div>
+
+            <div>
+                <label for="options-email">Passphrase</label>
+                <input type="text" id="options-passphrase">
+            </div>
+
+            <div>
+                <button type="button" id="generate-keys-button" onclick="generateKeys()">Generate Keys</button>
+            </div>
+        </div>
+
     </div>
 
-    <div id="keys-holder">
+
+
+    <div id="keys-holder" style="width: 340px;float:right;">
         <div>
             <label for="private-key-textarea">
                 <h3>Private Key</h3>
@@ -143,6 +213,9 @@
         </div>
 
     </div>
+
+
+
 
     <div id="copyright-holder">Copyright 2023 - Athanasios Emmanouilidis</div>
 
@@ -201,19 +274,27 @@
             alert(textarea.labels[0].textContent.trimStart().trimEnd() + " successfully copied to clipboard.");
         }
 
-        document.addEventListener("DOMContentLoaded", (event) => {
+        const generateKeys = () => {
 
             let privateKeyTextarea = document.querySelector("#private-key-textarea");
             let publicKeyTextarea = document.querySelector("#public-key-textarea");
             let revocationCertificateTextarea = document.querySelector("#revocation-certificate-textarea");
 
+            let buttonGenerateKeys = document.querySelector("#generate-keys-button");
+            let optionsType = document.querySelector("#options-type");
+            let optionsName = document.querySelector("#options-name");
+            let optionsEmail = document.querySelector("#options-email");
+            let optionsPassphrase = document.querySelector("#options-passphrase");
+
             (async () => {
 
+                buttonGenerateKeys.disabled = true;
+
                 const { privateKey, publicKey, revocationCertificate } = await openpgp.generateKey({
-                    type: 'ecc', // Type of the key, defaults to ECC
+                    type: optionsType.value, // Type of the key, defaults to ECC
                     curve: 'curve25519', // ECC curve name, defaults to curve25519
-                    userIDs: [{ name: 'Jon Smith', email: 'jon@example.com' }], // you can pass multiple user IDs
-                    passphrase: 'super long and hard to guess secret', // protects the private key
+                    userIDs: [{ name: optionsName.value, email: optionsEmail.value }], // you can pass multiple user IDs
+                    passphrase: optionsPassphrase.value, // protects the private key
                     format: 'armored' // output key format, defaults to 'armored' (other options: 'binary' or 'object')
                 });
 
@@ -221,7 +302,13 @@
                 publicKeyTextarea.value = publicKey;
                 revocationCertificateTextarea.value = revocationCertificate;
 
+                buttonGenerateKeys.disabled = false;
             })();
+        };
+
+        document.addEventListener("DOMContentLoaded", (event) => {
+
+
 
         });
 
