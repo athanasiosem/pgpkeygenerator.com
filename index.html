@@ -115,8 +115,8 @@
         #parameters-holder select,
         #parameters-holder input {
             padding: 5px;
-            border:1px solid #272727;
-            border-radius:5px;
+            border: 1px solid #272727;
+            border-radius: 5px;
         }
 
         #parameters-holder div {
@@ -176,7 +176,7 @@
                 <h3>Private Key</h3>
             </label>
             <div class="button-holder">
-                <button class="copy-button" type="button" content="private-key-textarea"
+                <button id="copy-private-key-button" type="button" content="private-key-textarea"
                     onclick="copyToClipboard(this)">Copy</button>
                 <button class="download-button" type="button" content="private-key-textarea"
                     onclick="downloadFile(this)">Download File</button>
@@ -189,7 +189,7 @@
                 <h3>Public Key</h3>
             </label>
             <div class="button-holder">
-                <button class="copy-button" type="button" content="public-key-textarea"
+                <button id="copy-public-key-button" class="copy-button" type="button" content="public-key-textarea"
                     onclick="copyToClipboard(this)">Copy</button>
                 <button class="download-button" type="button" content="public-key-textarea"
                     onclick="downloadFile(this)">Download File</button>
@@ -202,8 +202,8 @@
                 <h3>Revocation Certificate</h3>
             </label>
             <div class="button-holder">
-                <button class="copy-button" type="button" content="revocation-certificate-textarea"
-                    onclick="copyToClipboard(this)">Copy</button>
+                <button id="copy-revocation-certificate" class="copy-button" type="button"
+                    content="revocation-certificate-textarea" onclick="copyToClipboard(this)">Copy</button>
                 <button class="download-button" type="button" content="revocation-certificate-textarea"
                     onclick="downloadFile(this)">Download
                     File</button>
@@ -286,6 +286,9 @@
             let optionsEmail = document.querySelector("#options-email");
             let optionsPassphrase = document.querySelector("#options-passphrase");
 
+            let copyPrivateKeyButton = document.querySelector("#copy-private-key-button");
+            let copyPublicKeyButton = document.querySelector("#copy-public-key-button");
+
             (async () => {
 
                 buttonGenerateKeys.disabled = true;
@@ -303,13 +306,13 @@
                 revocationCertificateTextarea.value = revocationCertificate;
 
                 buttonGenerateKeys.disabled = false;
+
+                copyPrivateKeyButton.classList.add("copy-button");
+
             })();
         };
 
         document.addEventListener("DOMContentLoaded", (event) => {
-
-
-
         });
 
     </script>
