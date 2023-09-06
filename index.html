@@ -39,6 +39,7 @@
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            box-shadow: 2px 2px #272727;
         }
 
         .title {
@@ -52,6 +53,7 @@
             border: 1px solid #272727;
             border-radius: 15px;
             background-color: #efefef;
+            box-shadow: 4px 4px;
         }
 
         .copy-button {
@@ -70,6 +72,7 @@
             text-align: center;
             border-radius: 15px;
             border: 1px solid #272727;
+            box-shadow: 4px 4px;
         }
 
         #parameters-holder {
@@ -79,6 +82,7 @@
             text-align: left;
             border-radius: 15px;
             border: 1px solid #272727;
+            box-shadow: 4px 4px;
         }
 
         #copyright-holder {
@@ -116,7 +120,7 @@
 
         #generate-keys-button {
             padding: 48px;
-            border-radius: 15px;
+            /*border-radius: 15px;*/
             border: 1px solid gray;
             margin: 20px 0px;
             color: white;
@@ -132,6 +136,11 @@
 
         #parameters-holder div {
             margin-bottom: 10px;
+        }
+
+        #generate-key-button-holder {
+            margin: auto;
+            width: 265px;
         }
     </style>
 </head>
@@ -172,7 +181,7 @@
                 <input type="text" id="options-passphrase">
             </div>
 
-            <div>
+            <div id="generate-key-button-holder">
                 <button type="button" id="generate-keys-button" onclick="generateKeys()">Generate Keys</button>
             </div>
         </div>
@@ -192,7 +201,8 @@
                 <button id="download-private-key-button" type="button" content="private-key-textarea"
                     onclick="downloadFile(this)" disabled>Download File</button>
             </div>
-            <textarea id="private-key-textarea" name="private-key-textarea" rows="10" cols="40" disabled readonly></textarea>
+            <textarea id="private-key-textarea" name="private-key-textarea" rows="10" cols="40" disabled
+                readonly></textarea>
         </div>
 
         <div>
@@ -205,7 +215,8 @@
                 <button id="download-public-key-button" type="button" content="public-key-textarea"
                     onclick="downloadFile(this)" disabled>Download File</button>
             </div>
-            <textarea id="public-key-textarea" name="public-key-textarea" rows="10" cols="40" disabled readonly></textarea>
+            <textarea id="public-key-textarea" name="public-key-textarea" rows="10" cols="40" disabled
+                readonly></textarea>
         </div>
 
         <div>
@@ -219,8 +230,8 @@
                     content="revocation-certificate-textarea" onclick="downloadFile(this)" disabled>Download
                     File</button>
             </div>
-            <textarea id="revocation-certificate-textarea" name="revocation-certificate-textarea" rows="10"
-                cols="40" disabled readonly></textarea>
+            <textarea id="revocation-certificate-textarea" name="revocation-certificate-textarea" rows="10" cols="40"
+                disabled readonly></textarea>
         </div>
 
     </div>
@@ -304,6 +315,14 @@
             let downloadPrivateKeyButton = document.querySelector("#download-private-key-button");
             let downloadPublicKeyButton = document.querySelector("#download-public-key-button");
             let downloadRevocationCertificateButton = document.querySelector("#download-revocation-certificate-button");
+
+            copyPrivateKeyButton.classList.remove("copy-button");
+            copyPublicKeyButton.classList.remove("copy-button");
+            copyRevocationCertificateButton.classList.remove("copy-button");
+
+            downloadPrivateKeyButton.classList.remove("download-button");
+            downloadPublicKeyButton.classList.remove("download-button");
+            downloadRevocationCertificateButton.classList.remove("download-button");
 
             (async () => {
 
