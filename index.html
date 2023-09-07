@@ -217,6 +217,18 @@
                     <label for="options-passphrase">Passphrase</label>
                     <input type="text" id="options-passphrase">
                 </div>
+
+                <div>
+                    <label for="options-expiration">Expiration Time</label>
+                    <select name="options-expiration" id="options-expiration">
+                        <option value="0">Never Expires</option>
+                        <option value="31536000">1 Year</option>
+                        <option value="63072000">2 Years</option>
+                        <option value="126144000">4 Years</option>
+                        <option value="252288000">8 Years</option>
+                    </select>
+                </div>
+
             </div>
 
             <div id="generate-key-button-holder">
@@ -324,6 +336,7 @@
             let optionsName = document.querySelector("#options-name");
             let optionsEmail = document.querySelector("#options-email");
             let optionsPassphrase = document.querySelector("#options-passphrase");
+            let optionsExpirationTime = document.querySelector("#options-expiration");
 
             let copyPrivateKeyButton = document.querySelector("#copy-private-key-button");
             let copyPublicKeyButton = document.querySelector("#copy-public-key-button");
@@ -353,6 +366,7 @@
                     curve: 'curve25519', // ECC curve name, defaults to curve25519
                     userIDs: [{ name: optionsName.value, email: optionsEmail.value }], // you can pass multiple user IDs
                     passphrase: optionsPassphrase.value, // protects the private key
+                    keyExpirationTime: optionsExpirationTime.value,
                     format: 'armored' // output key format, defaults to 'armored' (other options: 'binary' or 'object')
                 });
 
