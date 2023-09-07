@@ -12,6 +12,7 @@
         gtag('config', 'G-DZPBPF3GFD');
     </script>
     <title>PGPkeygenerator.com - Generate OpenPGP keys online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
             width: 780px;
@@ -24,6 +25,17 @@
 
         a:visited {
             color: #272727;
+        }
+
+        h2 {
+            display: block;
+            font-size: 1.17em;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+
         }
 
         textarea {
@@ -215,11 +227,11 @@
 
     <div id="keys-holder" style="width: 340px;float:right;">
         <div>
-            <h3>
+            <h2>
                 <label for="private-key-textarea">
                     Private Key
                 </label>
-            </h3>
+            </h2>
             <div class="button-holder">
                 <button id="copy-private-key-button" type="button" content="private-key-textarea"
                     onclick="copyToClipboard(this)" disabled>Copy</button>
@@ -231,11 +243,11 @@
         </div>
 
         <div>
-            <h3>
+            <h2>
                 <label for="public-key-textarea">
                     Public Key
                 </label>
-            </h3>
+            </h2>
             <div class="button-holder">
                 <button id="copy-public-key-button" type="button" content="public-key-textarea"
                     onclick="copyToClipboard(this)" disabled>Copy</button>
@@ -247,11 +259,11 @@
         </div>
 
         <div>
-            <h3>
+            <h2>
                 <label for="revocation-certificate-textarea">
                     Revocation Certificate
                 </label>
-            </h3>
+            </h2>
             <div class="button-holder">
                 <button id="copy-revocation-certificate-button" type="button" content="revocation-certificate-textarea"
                     onclick="copyToClipboard(this)" disabled>Copy</button>
