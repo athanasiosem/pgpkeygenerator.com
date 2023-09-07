@@ -178,6 +178,10 @@
         #parameters-holder select {
             width: 181px;
         }
+
+        .key-size-select-holder {
+            display: none;
+        }
     </style>
 </head>
 
@@ -196,10 +200,18 @@
 
             <div id="textinput-holder">
                 <div>
-                    <label for="options-type">Type</label>
-                    <select name="options-type" id="options-type">
+                    <label for="options-type">Key Algorithm</label>
+                    <select name="options-type" onchange="keyAlgorithmChanged(this)" id="options-type">
                         <option value="ecc">ECC</option>
                         <option value="rsa">RSA</option>
+                    </select>
+                </div>
+
+                <div id="key-size-select-holder" class="key-size-select-holder">
+                    <label for="options-key-size">Key Size</label>
+                    <select name="options-key-size" id="options-key-size">
+                        <option value="4096">4096 bits</option>
+                        <option value="2048">2048 bits</option>
                     </select>
                 </div>
 
@@ -325,6 +337,15 @@
             alert(textarea.labels[0].textContent.trimStart().trimEnd() + " successfully copied to clipboard.");
         }
 
+        const keyAlgorithmChanged = (event) => {
+
+            if (event.value == "rsa") {
+                document.querySelector("#key-size-select-holder").classList.remove("key-size-select-holder");
+            } else {
+                document.querySelector("#key-size-select-holder").classList.add("key-size-select-holder");
+            }
+        };
+
         const generateKeys = () => {
 
             let privateKeyTextarea = document.querySelector("#private-key-textarea");
@@ -333,6 +354,7 @@
 
             let buttonGenerateKeys = document.querySelector("#generate-keys-button");
             let optionsType = document.querySelector("#options-type");
+            let optionsKeySize = document.querySelector("#options-key-size");
             let optionsName = document.querySelector("#options-name");
             let optionsEmail = document.querySelector("#options-email");
             let optionsPassphrase = document.querySelector("#options-passphrase");
@@ -364,6 +386,7 @@
                 const { privateKey, publicKey, revocationCertificate } = await openpgp.generateKey({
                     type: optionsType.value, // Type of the key, defaults to ECC
                     curve: 'curve25519', // ECC curve name, defaults to curve25519
+                    rsaBits: optionsKeySize.value,
                     userIDs: [{ name: optionsName.value, email: optionsEmail.value }], // you can pass multiple user IDs
                     passphrase: optionsPassphrase.value, // protects the private key
                     keyExpirationTime: optionsExpirationTime.value,
