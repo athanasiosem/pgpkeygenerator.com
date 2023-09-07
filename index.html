@@ -229,7 +229,7 @@
 
                 <div>
                     <label for="options-email">Email</label>
-                    <input type="text" id="options-email">
+                    <input type="email" id="options-email">
                 </div>
 
                 <div>
@@ -366,6 +366,12 @@
             let optionsEmail = document.querySelector("#options-email");
             let optionsPassphrase = document.querySelector("#options-passphrase");
             let optionsExpirationTime = document.querySelector("#options-expiration");
+
+            if (!optionsEmail.checkValidity())
+            {
+                alert('Please enter a valid email address.');
+                return;
+            }
 
             let copyPrivateKeyButton = document.querySelector("#copy-private-key-button");
             let copyPublicKeyButton = document.querySelector("#copy-public-key-button");
