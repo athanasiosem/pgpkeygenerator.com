@@ -209,8 +209,6 @@
 
     </div>
 
-
-
     <div id="keys-holder" style="width: 340px;float:right;">
         <div>
             <label for="private-key-textarea">
@@ -254,38 +252,13 @@
             <textarea id="revocation-certificate-textarea" name="revocation-certificate-textarea" rows="10" cols="40"
                 disabled readonly></textarea>
         </div>
-
     </div>
 
+    <div id="copyright-holder">Copyright 2023 - <a href="https://emman.dev">Athanasios Emmanouilidis</a></div>
 
-
-
-    <div id="copyright-holder">Copyright 2023 - Athanasios Emmanouilidis</div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@simondmc/popup-js@1.4.2/popup.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/openpgp@5.10.1/dist/openpgp.min.js"></script>
 
     <script>
-
-        const about = new Popup({
-            id: "about",
-            title: "About PGPkeygenerator.online",
-            content: `✓ PGPkeygenerator.online is <u>a free and online PGP key generator</u>.
-            ✓ You can <u>create PGP keys</u>.
-            ✓ All code <u>runs on the client-side</u> so it is <u>100% secure</u>.
-            ✓ The <u>OpenPGP.js</u> package is used.`,
-        });
-
-        const who = new Popup({
-            id: "who",
-            title: "Who we are",
-            content: `I am Athanasios Emmanouilidis, a Software Engineer from Greece.`,
-        });
-
-        const showPopup = (name) => {
-            if (name == "about")
-                about.show();
-        };
 
         const downloadFile = (event) => {
 
