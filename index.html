@@ -379,9 +379,13 @@
             (async () => {
 
                 buttonGenerateKeys.disabled = true;
+
                 copyPrivateKeyButton.disabled = true;
                 copyPublicKeyButton.disabled = true;
                 copyRevocationCertificateButton.disabled = true;
+                downloadPrivateKeyButton.disabled = true;
+                downloadPublicKeyButton.disabled = true;
+                downloadRevocationCertificateButton.disabled = true;
 
                 const { privateKey, publicKey, revocationCertificate } = await openpgp.generateKey({
                     type: optionsType.value, // Type of the key, defaults to ECC
@@ -406,9 +410,14 @@
                 downloadRevocationCertificateButton.classList.add("download-button");
 
                 buttonGenerateKeys.disabled = false;
+
                 copyPrivateKeyButton.disabled = false;
                 copyPublicKeyButton.disabled = false;
                 copyRevocationCertificateButton.disabled = false;
+
+                downloadPrivateKeyButton.disabled = false;
+                downloadPublicKeyButton.disabled = false;
+                downloadRevocationCertificateButton.disabled = false;
 
                 privateKeyTextarea.disabled = false;
                 publicKeyTextarea.disabled = false;
