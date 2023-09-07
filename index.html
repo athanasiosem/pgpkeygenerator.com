@@ -73,6 +73,7 @@
             border-radius: 15px;
             border: 1px solid #272727;
             box-shadow: 4px 4px;
+            line-height: 150%;
         }
 
         #parameters-holder {
@@ -142,6 +143,15 @@
             margin: auto;
             width: 265px;
         }
+
+        #textinput-holder {
+            margin: auto;
+            width: 186px;
+        }
+
+        #parameters-holder select{
+            width:181px;
+        }
     </style>
 </head>
 
@@ -158,27 +168,29 @@
 
         <div id="parameters-holder">
 
-            <div>
-                <label for="options-type">Type</label>
-                <select name="options-type" id="options-type">
-                    <option value="ecc">ECC</option>
-                    <option value="rsa">RSA</option>
-                </select>
-            </div>
+            <div id="textinput-holder">
+                <div>
+                    <label for="options-type">Type</label>
+                    <select name="options-type" id="options-type">
+                        <option value="ecc">ECC</option>
+                        <option value="rsa">RSA</option>
+                    </select>
+                </div>
 
-            <div>
-                <label for="options-name">Name</label>
-                <input type="text" id="options-name">
-            </div>
+                <div>
+                    <label for="options-name">Name</label>
+                    <input type="text" id="options-name">
+                </div>
 
-            <div>
-                <label for="options-email">Email</label>
-                <input type="text" id="options-email">
-            </div>
+                <div>
+                    <label for="options-email">Email</label>
+                    <input type="text" id="options-email">
+                </div>
 
-            <div>
-                <label for="options-email">Passphrase</label>
-                <input type="text" id="options-passphrase">
+                <div>
+                    <label for="options-email">Passphrase</label>
+                    <input type="text" id="options-passphrase">
+                </div>
             </div>
 
             <div id="generate-key-button-holder">
