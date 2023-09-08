@@ -200,7 +200,8 @@
             <h1 class="title">🔑 PGPkeygenerator.com</h1>
             <span>PGPkeygenerator.com is a <u>free</u>, <u>online</u> and <u>secure</u> PGP key
                 generator.</span><br>
-            <span>All code <u>runs on the client-side</u>. The <u>OpenPGP.js</u> library is used.</span><br>
+            <span>All code <u>runs on the client-side</u>. The <a href="https://openpgpjs.org/">OpenPGP.js</a> library
+                is used.</span><br>
         </div>
 
         <div id="parameters-holder">
@@ -367,8 +368,7 @@
             let optionsPassphrase = document.querySelector("#options-passphrase");
             let optionsExpirationTime = document.querySelector("#options-expiration");
 
-            if (!optionsEmail.checkValidity())
-            {
+            if (!optionsEmail.checkValidity()) {
                 alert('Please enter a valid email address.');
                 return;
             }
