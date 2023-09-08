@@ -311,7 +311,6 @@
 
     <div id="copyright-holder">Copyright 2023 - <a href="https://emman.dev">Athanasios Emmanouilidis</a></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/openpgp@5.10.1/dist/openpgp.min.js"></script>
 
     <script>
 
@@ -389,30 +388,35 @@
             downloadPublicKeyButton.classList.remove("download-button");
             downloadRevocationCertificateButton.classList.remove("download-button");
 
-            (async () => {
+            buttonGenerateKeys.disabled = true;
 
-                buttonGenerateKeys.disabled = true;
+            copyPrivateKeyButton.disabled = true;
+            copyPublicKeyButton.disabled = true;
+            copyRevocationCertificateButton.disabled = true;
+            downloadPrivateKeyButton.disabled = true;
+            downloadPublicKeyButton.disabled = true;
+            downloadRevocationCertificateButton.disabled = true;
 
-                copyPrivateKeyButton.disabled = true;
-                copyPublicKeyButton.disabled = true;
-                copyRevocationCertificateButton.disabled = true;
-                downloadPrivateKeyButton.disabled = true;
-                downloadPublicKeyButton.disabled = true;
-                downloadRevocationCertificateButton.disabled = true;
+            let optionsTypeValue = optionsType.value;
+            let optionsKeySizeValue = optionsKeySize.value;
+            let optionsNameValue = optionsName.value;
+            let optionsEmailValue = optionsEmail.value;
+            let optionsPassphraseValue = optionsPassphrase.value;
+            let optionsExpirationTimeValue = optionsExpirationTime.value;
 
-                const { privateKey, publicKey, revocationCertificate } = await openpgp.generateKey({
-                    type: optionsType.value, // Type of the key, defaults to ECC
-                    curve: 'curve25519', // ECC curve name, defaults to curve25519
-                    rsaBits: optionsKeySize.value,
-                    userIDs: [{ name: optionsName.value, email: optionsEmail.value }], // you can pass multiple user IDs
-                    passphrase: optionsPassphrase.value, // protects the private key
-                    keyExpirationTime: optionsExpirationTime.value,
-                    format: 'armored' // output key format, defaults to 'armored' (other options: 'binary' or 'object')
-                });
+            let optionsObject = {
+                optionsTypeValue,
+                optionsKeySizeValue, optionsNameValue,
+                optionsEmailValue, optionsPassphraseValue,
+                optionsExpirationTimeValue
+            };
 
-                privateKeyTextarea.value = privateKey;     // '-----BEGIN PGP PRIVATE KEY BLOCK ... '
-                publicKeyTextarea.value = publicKey;
-                revocationCertificateTextarea.value = revocationCertificate;
+            var worker = new Worker("worker.js");
+            worker.onmessage = async function handleMessageFromMain(msg) {
+
+                privateKeyTextarea.value = msg.data.privateKey;
+                publicKeyTextarea.value = msg.data.publicKey;
+                revocationCertificateTextarea.value = msg.data.revocationCertificate;
 
                 copyPrivateKeyButton.classList.add("copy-button");
                 copyPublicKeyButton.classList.add("copy-button");
@@ -435,8 +439,9 @@
                 privateKeyTextarea.disabled = false;
                 publicKeyTextarea.disabled = false;
                 revocationCertificateTextarea.disabled = false;
+            };
+            worker.postMessage(optionsObject);
 
-            })();
         };
     </script>
 </body>
