@@ -1,8 +1,8 @@
 (async () => {
 
-    self.onmessage = async function handleMessageFromMain(msg) {
+    importScripts('https://cdn.jsdelivr.net/npm/openpgp@5.10.1/dist/openpgp.min.js');
 
-        importScripts('https://cdn.jsdelivr.net/npm/openpgp@5.10.1/dist/openpgp.min.js');
+    self.onmessage = async function handleMessageFromMain(msg) {
 
         const { privateKey, publicKey, revocationCertificate } = await openpgp.generateKey({
             type: msg.data.optionsTypeValue, // Type of the key, defaults to ECC
