@@ -357,32 +357,76 @@
             }
         };
 
+        var worker = new Worker("worker.js");
+        worker.onmessage = async function handleMessageFromMain(msg) {
+
+            privateKeyTextarea.value = msg.data.privateKey;
+            publicKeyTextarea.value = msg.data.publicKey;
+            revocationCertificateTextarea.value = msg.data.revocationCertificate;
+
+            copyPrivateKeyButton.classList.add("copy-button");
+            copyPublicKeyButton.classList.add("copy-button");
+            copyRevocationCertificateButton.classList.add("copy-button");
+
+            downloadPrivateKeyButton.classList.add("download-button");
+            downloadPublicKeyButton.classList.add("download-button");
+            downloadRevocationCertificateButton.classList.add("download-button");
+
+            buttonGenerateKeys.disabled = false;
+
+            copyPrivateKeyButton.disabled = false;
+            copyPublicKeyButton.disabled = false;
+            copyRevocationCertificateButton.disabled = false;
+
+            downloadPrivateKeyButton.disabled = false;
+            downloadPublicKeyButton.disabled = false;
+            downloadRevocationCertificateButton.disabled = false;
+
+            privateKeyTextarea.disabled = false;
+            publicKeyTextarea.disabled = false;
+            revocationCertificateTextarea.disabled = false;
+        };
+
+        let privateKeyTextarea = document.querySelector("#private-key-textarea");
+        let publicKeyTextarea = document.querySelector("#public-key-textarea");
+        let revocationCertificateTextarea = document.querySelector("#revocation-certificate-textarea");
+
+        let buttonGenerateKeys = document.querySelector("#generate-keys-button");
+        let optionsType = document.querySelector("#options-type");
+        let optionsKeySize = document.querySelector("#options-key-size");
+        let optionsName = document.querySelector("#options-name");
+        let optionsEmail = document.querySelector("#options-email");
+        let optionsPassphrase = document.querySelector("#options-passphrase");
+        let optionsExpirationTime = document.querySelector("#options-expiration");
+
+        let copyPrivateKeyButton = document.querySelector("#copy-private-key-button");
+        let copyPublicKeyButton = document.querySelector("#copy-public-key-button");
+        let copyRevocationCertificateButton = document.querySelector("#copy-revocation-certificate-button");
+
+        let downloadPrivateKeyButton = document.querySelector("#download-private-key-button");
+        let downloadPublicKeyButton = document.querySelector("#download-public-key-button");
+        let downloadRevocationCertificateButton = document.querySelector("#download-revocation-certificate-button");
+
+        let optionsTypeValue = optionsType.value;
+        let optionsKeySizeValue = optionsKeySize.value;
+        let optionsNameValue = optionsName.value;
+        let optionsEmailValue = optionsEmail.value;
+        let optionsPassphraseValue = optionsPassphrase.value;
+        let optionsExpirationTimeValue = optionsExpirationTime.value;
+
+        let optionsObject = {
+            optionsTypeValue,
+            optionsKeySizeValue, optionsNameValue,
+            optionsEmailValue, optionsPassphraseValue,
+            optionsExpirationTimeValue
+        };
+
         const generateKeys = () => {
-
-            let privateKeyTextarea = document.querySelector("#private-key-textarea");
-            let publicKeyTextarea = document.querySelector("#public-key-textarea");
-            let revocationCertificateTextarea = document.querySelector("#revocation-certificate-textarea");
-
-            let buttonGenerateKeys = document.querySelector("#generate-keys-button");
-            let optionsType = document.querySelector("#options-type");
-            let optionsKeySize = document.querySelector("#options-key-size");
-            let optionsName = document.querySelector("#options-name");
-            let optionsEmail = document.querySelector("#options-email");
-            let optionsPassphrase = document.querySelector("#options-passphrase");
-            let optionsExpirationTime = document.querySelector("#options-expiration");
 
             if (!optionsEmail.checkValidity()) {
                 alert('Please enter a valid email address.');
                 return;
             }
-
-            let copyPrivateKeyButton = document.querySelector("#copy-private-key-button");
-            let copyPublicKeyButton = document.querySelector("#copy-public-key-button");
-            let copyRevocationCertificateButton = document.querySelector("#copy-revocation-certificate-button");
-
-            let downloadPrivateKeyButton = document.querySelector("#download-private-key-button");
-            let downloadPublicKeyButton = document.querySelector("#download-public-key-button");
-            let downloadRevocationCertificateButton = document.querySelector("#download-revocation-certificate-button");
 
             copyPrivateKeyButton.classList.remove("copy-button");
             copyPublicKeyButton.classList.remove("copy-button");
@@ -401,49 +445,6 @@
             downloadPublicKeyButton.disabled = true;
             downloadRevocationCertificateButton.disabled = true;
 
-            let optionsTypeValue = optionsType.value;
-            let optionsKeySizeValue = optionsKeySize.value;
-            let optionsNameValue = optionsName.value;
-            let optionsEmailValue = optionsEmail.value;
-            let optionsPassphraseValue = optionsPassphrase.value;
-            let optionsExpirationTimeValue = optionsExpirationTime.value;
-
-            let optionsObject = {
-                optionsTypeValue,
-                optionsKeySizeValue, optionsNameValue,
-                optionsEmailValue, optionsPassphraseValue,
-                optionsExpirationTimeValue
-            };
-
-            var worker = new Worker("worker.js");
-            worker.onmessage = async function handleMessageFromMain(msg) {
-
-                privateKeyTextarea.value = msg.data.privateKey;
-                publicKeyTextarea.value = msg.data.publicKey;
-                revocationCertificateTextarea.value = msg.data.revocationCertificate;
-
-                copyPrivateKeyButton.classList.add("copy-button");
-                copyPublicKeyButton.classList.add("copy-button");
-                copyRevocationCertificateButton.classList.add("copy-button");
-
-                downloadPrivateKeyButton.classList.add("download-button");
-                downloadPublicKeyButton.classList.add("download-button");
-                downloadRevocationCertificateButton.classList.add("download-button");
-
-                buttonGenerateKeys.disabled = false;
-
-                copyPrivateKeyButton.disabled = false;
-                copyPublicKeyButton.disabled = false;
-                copyRevocationCertificateButton.disabled = false;
-
-                downloadPrivateKeyButton.disabled = false;
-                downloadPublicKeyButton.disabled = false;
-                downloadRevocationCertificateButton.disabled = false;
-
-                privateKeyTextarea.disabled = false;
-                publicKeyTextarea.disabled = false;
-                revocationCertificateTextarea.disabled = false;
-            };
             worker.postMessage(optionsObject);
 
         };
