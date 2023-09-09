@@ -320,7 +320,7 @@
 
         const downloadFile = (event) => {
 
-            let textareaName = event.getAttribute('content');
+            const textareaName = event.getAttribute('content');
 
             const link = document.createElement("a");
             const content = document.querySelector("#" + textareaName).value;
@@ -333,8 +333,9 @@
 
         const copyToClipboard = (event) => {
 
-            let textareaName = event.getAttribute('content');
-            let textarea = document.querySelector("#" + textareaName);
+            const textareaName = event.getAttribute('content');
+
+            const textarea = document.querySelector("#" + textareaName);
 
             // Select the text area
             textarea.select();
@@ -356,7 +357,7 @@
             }
         };
 
-        var worker = new Worker("worker.js");
+        const worker = new Worker("worker.js");
         worker.onmessage = async function handleMessageFromMain(msg) {
 
             privateKeyTextarea.value = msg.data.privateKey;
@@ -386,34 +387,34 @@
             revocationCertificateTextarea.disabled = false;
         };
 
-        let privateKeyTextarea = document.querySelector("#private-key-textarea");
-        let publicKeyTextarea = document.querySelector("#public-key-textarea");
-        let revocationCertificateTextarea = document.querySelector("#revocation-certificate-textarea");
+        const privateKeyTextarea = document.querySelector("#private-key-textarea");
+        const publicKeyTextarea = document.querySelector("#public-key-textarea");
+        const revocationCertificateTextarea = document.querySelector("#revocation-certificate-textarea");
 
-        let buttonGenerateKeys = document.querySelector("#generate-keys-button");
-        let optionsType = document.querySelector("#options-type");
-        let optionsKeySize = document.querySelector("#options-key-size");
-        let optionsName = document.querySelector("#options-name");
-        let optionsEmail = document.querySelector("#options-email");
-        let optionsPassphrase = document.querySelector("#options-passphrase");
-        let optionsExpirationTime = document.querySelector("#options-expiration");
+        const buttonGenerateKeys = document.querySelector("#generate-keys-button");
+        const optionsType = document.querySelector("#options-type");
+        const optionsKeySize = document.querySelector("#options-key-size");
+        const optionsName = document.querySelector("#options-name");
+        const optionsEmail = document.querySelector("#options-email");
+        const optionsPassphrase = document.querySelector("#options-passphrase");
+        const optionsExpirationTime = document.querySelector("#options-expiration");
 
-        let copyPrivateKeyButton = document.querySelector("#copy-private-key-button");
-        let copyPublicKeyButton = document.querySelector("#copy-public-key-button");
-        let copyRevocationCertificateButton = document.querySelector("#copy-revocation-certificate-button");
+        const copyPrivateKeyButton = document.querySelector("#copy-private-key-button");
+        const copyPublicKeyButton = document.querySelector("#copy-public-key-button");
+        const copyRevocationCertificateButton = document.querySelector("#copy-revocation-certificate-button");
 
-        let downloadPrivateKeyButton = document.querySelector("#download-private-key-button");
-        let downloadPublicKeyButton = document.querySelector("#download-public-key-button");
-        let downloadRevocationCertificateButton = document.querySelector("#download-revocation-certificate-button");
+        const downloadPrivateKeyButton = document.querySelector("#download-private-key-button");
+        const downloadPublicKeyButton = document.querySelector("#download-public-key-button");
+        const downloadRevocationCertificateButton = document.querySelector("#download-revocation-certificate-button");
 
-        let optionsTypeValue = optionsType.value;
-        let optionsKeySizeValue = optionsKeySize.value;
-        let optionsNameValue = optionsName.value;
-        let optionsEmailValue = optionsEmail.value;
-        let optionsPassphraseValue = optionsPassphrase.value;
-        let optionsExpirationTimeValue = optionsExpirationTime.value;
+        const optionsTypeValue = optionsType.value;
+        const optionsKeySizeValue = optionsKeySize.value;
+        const optionsNameValue = optionsName.value;
+        const optionsEmailValue = optionsEmail.value;
+        const optionsPassphraseValue = optionsPassphrase.value;
+        const optionsExpirationTimeValue = optionsExpirationTime.value;
 
-        let optionsObject = {
+        const optionsObject = {
             optionsTypeValue,
             optionsKeySizeValue, optionsNameValue,
             optionsEmailValue, optionsPassphraseValue,
