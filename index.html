@@ -3,6 +3,11 @@
 
 <head>
     <!-- Google tag (gtag.js) -->
+    <script type="text/javascript"
+        src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=aEA4RRJm5K_8fULN80wKk4djOZSneUXVlHNcdF4Y-Ob4dkGu3xeQF9B1YX6XB0Dg"
+        charset="UTF-8"></script>
+    <link rel="stylesheet" crossorigin="anonymous"
+        href="https://me.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9wZ3BrZXlnZW5lcmF0b3IuY29tLw" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DZPBPF3GFD"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -207,7 +212,43 @@
         .key-size-select-holder {
             display: none;
         }
+
+        #first-column {
+            width: 340px;
+            float: left;
+        }
+
+        #keys-holder {
+            width: 340px;
+            float: right;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                width: 80%;
+                padding: 10px;
+            }
+
+            #first-column {
+                width: 100%;
+                padding: 10px;
+                float: left;
+            }
+
+            #keys-holder {
+                width: 100%;
+                padding: 10px;
+                float: left;
+            }
+
+            #copyright-holder {
+                width: 100%;
+                padding: 10px;
+                float: left;
+            }
+        }
     </style>
+
     <script type="application/ld+json">
             {
                 "@context": "http://schema.org",
@@ -216,12 +257,13 @@
                 "url": "https://www.pgpkeygenerator.com/",
                 "description": "Generate OpenPGP keys online securely."
             }
-            </script>
+    </script>
+
 </head>
 
 <body>
 
-    <div style="width:340px;float:left;">
+    <div id="first-column">
 
         <div id="title-holder">
             <h1 class="title">🔑 PGPkeygenerator.com</h1>
@@ -285,7 +327,7 @@
 
     </div>
 
-    <div id="keys-holder" style="width: 340px;float:right;">
+    <div id="keys-holder">
         <div>
             <h2>
                 <label for="private-key-textarea">
