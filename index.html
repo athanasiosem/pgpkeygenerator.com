@@ -98,6 +98,8 @@
             border-radius: 15px;
             background-color: #efefef;
             box-shadow: 4px 4px;
+            width: 340px;
+            float: right;
         }
 
         .copy-button {
@@ -165,7 +167,6 @@
 
         #generate-keys-button {
             padding: 48px;
-            /*border-radius: 15px;*/
             border: 1px solid gray;
             margin: 20px 0px;
             color: white;
@@ -185,7 +186,6 @@
 
         #generate-key-button-holder {
             margin: auto;
-            width: 265px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -207,21 +207,79 @@
         .key-size-select-holder {
             display: none;
         }
-    </style>
-    <script type="application/ld+json">
-            {
-                "@context": "http://schema.org",
-                "@type": "WebSite",
-                "name": "PGPkeygenerator.com",
-                "url": "https://www.pgpkeygenerator.com/",
-                "description": "Generate OpenPGP keys online securely."
+
+        #title-and-parameters-holder {
+            width: 340px;
+            float: left;
+        }
+
+        @media (max-width: 768px) {
+
+            body {
+                width: 100%;
+                padding: 10px;
             }
-            </script>
+
+            #keys-holder {
+                padding: 0px 40px 20px 40px;
+                border: 1px solid #272727;
+                border-radius: 15px;
+                background-color: #efefef;
+                box-shadow: 4px 4px;
+                width: 85%;
+                float: left;
+            }
+
+            #title-and-parameters-holder {
+                width: 85%;
+                float: left;
+            }
+
+            #title-holder {
+                width: 100%;
+            }
+
+            #parameters-holder {
+                width: 100%;
+            }
+
+            #copyright-holder {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                float: left;
+            }
+
+            #keys-holder-parent {
+                width: 85%;
+                float: left;
+            }
+
+            textarea {
+                width: 100%;
+            }
+
+            #keys-holder button {
+                padding: 0.5rem 0.5rem;
+            }
+
+        }
+    </style>
+
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "name": "PGPkeygenerator.com",
+            "url": "https://www.pgpkeygenerator.com/",
+            "description": "Generate OpenPGP keys online securely."
+        }
+    </script>
+
 </head>
 
 <body>
 
-    <div style="width:340px;float:left;">
+    <div id="title-and-parameters-holder">
 
         <div id="title-holder">
             <h1 class="title">🔑 PGPkeygenerator.com</h1>
@@ -285,55 +343,59 @@
 
     </div>
 
-    <div id="keys-holder" style="width: 340px;float:right;">
-        <div>
-            <h2>
-                <label for="private-key-textarea">
-                    Private Key
-                </label>
-            </h2>
-            <div class="button-holder">
-                <button id="copy-private-key-button" type="button" content="private-key-textarea"
-                    onclick="copyToClipboard(this)" disabled>Copy</button>
-                <button id="download-private-key-button" type="button" content="private-key-textarea"
-                    onclick="downloadFile(this)" disabled>Download File</button>
+    <div id="keys-holder-parent">
+
+        <div id="keys-holder">
+            <div>
+                <h2>
+                    <label for="private-key-textarea">
+                        Private Key
+                    </label>
+                </h2>
+                <div class="button-holder">
+                    <button id="copy-private-key-button" type="button" content="private-key-textarea"
+                        onclick="copyToClipboard(this)" disabled>Copy</button>
+                    <button id="download-private-key-button" type="button" content="private-key-textarea"
+                        onclick="downloadFile(this)" disabled>Download File</button>
+                </div>
+                <textarea id="private-key-textarea" name="private-key-textarea" rows="10" cols="40" disabled
+                    readonly></textarea>
             </div>
-            <textarea id="private-key-textarea" name="private-key-textarea" rows="10" cols="40" disabled
-                readonly></textarea>
+
+            <div>
+                <h2>
+                    <label for="public-key-textarea">
+                        Public Key
+                    </label>
+                </h2>
+                <div class="button-holder">
+                    <button id="copy-public-key-button" type="button" content="public-key-textarea"
+                        onclick="copyToClipboard(this)" disabled>Copy</button>
+                    <button id="download-public-key-button" type="button" content="public-key-textarea"
+                        onclick="downloadFile(this)" disabled>Download File</button>
+                </div>
+                <textarea id="public-key-textarea" name="public-key-textarea" rows="10" cols="40" disabled
+                    readonly></textarea>
+            </div>
+
+            <div>
+                <h2>
+                    <label for="revocation-certificate-textarea">
+                        Revocation Certificate
+                    </label>
+                </h2>
+                <div class="button-holder">
+                    <button id="copy-revocation-certificate-button" type="button"
+                        content="revocation-certificate-textarea" onclick="copyToClipboard(this)" disabled>Copy</button>
+                    <button id="download-revocation-certificate-button" type="button"
+                        content="revocation-certificate-textarea" onclick="downloadFile(this)" disabled>Download
+                        File</button>
+                </div>
+                <textarea id="revocation-certificate-textarea" name="revocation-certificate-textarea" rows="10"
+                    cols="40" disabled readonly></textarea>
+            </div>
         </div>
 
-        <div>
-            <h2>
-                <label for="public-key-textarea">
-                    Public Key
-                </label>
-            </h2>
-            <div class="button-holder">
-                <button id="copy-public-key-button" type="button" content="public-key-textarea"
-                    onclick="copyToClipboard(this)" disabled>Copy</button>
-                <button id="download-public-key-button" type="button" content="public-key-textarea"
-                    onclick="downloadFile(this)" disabled>Download File</button>
-            </div>
-            <textarea id="public-key-textarea" name="public-key-textarea" rows="10" cols="40" disabled
-                readonly></textarea>
-        </div>
-
-        <div>
-            <h2>
-                <label for="revocation-certificate-textarea">
-                    Revocation Certificate
-                </label>
-            </h2>
-            <div class="button-holder">
-                <button id="copy-revocation-certificate-button" type="button" content="revocation-certificate-textarea"
-                    onclick="copyToClipboard(this)" disabled>Copy</button>
-                <button id="download-revocation-certificate-button" type="button"
-                    content="revocation-certificate-textarea" onclick="downloadFile(this)" disabled>Download
-                    File</button>
-            </div>
-            <textarea id="revocation-certificate-textarea" name="revocation-certificate-textarea" rows="10" cols="40"
-                disabled readonly></textarea>
-        </div>
     </div>
 
     <div id="copyright-holder">Copyright 2023 - <a href="https://emman.dev">Athanasios Emmanouilidis</a></div>
