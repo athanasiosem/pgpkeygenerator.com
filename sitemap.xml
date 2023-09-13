@@ -9,12 +9,17 @@
 
 <url>
   <loc>https://pgpkeygenerator.com/</loc>
-  <lastmod>2023-09-13T12:42:10+00:00</lastmod>
+  <lastmod>2023-09-13T13:04:58+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://pgpkeygenerator.com/faq</loc>
-  <lastmod>2023-09-13T12:42:10+00:00</lastmod>
+  <lastmod>2023-09-13T13:04:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pgpkeygenerator.com/about-pgp-encryption</loc>
+  <lastmod>2023-09-13T13:04:58+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
