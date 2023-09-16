@@ -3,7 +3,7 @@
 
 PGPkeygenerator.com is a free, online and secure PGP key generator.
 
-- All code runs on the client-side. All code is Open Source.
-- The OpenPGP.js library is used.
+- All code is Open Source. The OpenPGP.js library is used.
+- All code runs on the client-side. 
 - No user tracking. Feel free to unplug the Internet before use.
 - Read the FAQ for more information or learn about PGP encryption.
