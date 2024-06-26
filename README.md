@@ -8,4 +8,6 @@ PGPkeygenerator.com is an Open Source, free, online and secure PGP key generator
 - No user tracking. Feel free to unplug the Internet before use.
 - Read the FAQ for more information or learn about PGP encryption.
 
+<div align="center">
 Athanasios Emmanouilidis - MIT License
+</div>
