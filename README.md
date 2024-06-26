@@ -7,3 +7,5 @@ PGPkeygenerator.com is an Open Source, free, online and secure PGP key generator
 - All code runs on the client-side. No servers involved.
 - No user tracking. Feel free to unplug the Internet before use.
 - Read the FAQ for more information or learn about PGP encryption.
+
+Athanasios Emmanouilidis - MIT License
