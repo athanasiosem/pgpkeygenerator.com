@@ -493,13 +493,6 @@
         const downloadPublicKeyButton = document.querySelector("#download-public-key-button");
         const downloadRevocationCertificateButton = document.querySelector("#download-revocation-certificate-button");
 
-        const optionsObject = {
-            optionsTypeValue,
-            optionsKeySizeValue, optionsNameValue,
-            optionsEmailValue, optionsPassphraseValue,
-            optionsExpirationTimeValue
-        };
-
         const generateKeys = () => {
 
             const optionsTypeValue = optionsType.value;
@@ -508,6 +501,13 @@
             const optionsEmailValue = optionsEmail.value;
             const optionsPassphraseValue = optionsPassphrase.value;
             const optionsExpirationTimeValue = optionsExpirationTime.value;
+
+            const optionsObject = {
+                optionsTypeValue,
+                optionsKeySizeValue, optionsNameValue,
+                optionsEmailValue, optionsPassphraseValue,
+                optionsExpirationTimeValue
+            };
             
             if (!optionsEmail.checkValidity()) {
                 alert('Please enter a valid email address.');
