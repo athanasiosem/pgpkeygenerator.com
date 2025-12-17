@@ -5,12 +5,14 @@
     <title>PGPkeygenerator.com - Open Source, free, online and secure PGP key generator</title>
     <meta charset="UTF-8">
     <meta name="author" content="Athanasios Emmanouilidis">
-    <meta name="keywords" content="PGP, key generator, cryptography, encryption, privacy, public key, private key, PGP encryption, GPG, secure communication, digital signature, email encryption, PGP key management, cryptographic keys, asymmetric encryption, public key infrastructure, data protection, secure messaging, cryptographic security, key pair generation, key storage, security tools, cryptographic software, encryption tools">
+    <meta name="keywords"
+        content="PGP, key generator, cryptography, encryption, privacy, public key, private key, PGP encryption, GPG, secure communication, digital signature, email encryption, PGP key management, cryptographic keys, asymmetric encryption, public key infrastructure, data protection, secure messaging, cryptographic security, key pair generation, key storage, security tools, cryptographic software, encryption tools">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#272727">
     <meta name="apple-mobile-web-app-status-bar-style" content="#272727">
-    <meta name="description" content="Generate secure PGP keys for free online with PGPkeygenerator.com. Safeguard your communications with a trusted Open Source PGP key generator tool.">
+    <meta name="description"
+        content="Generate secure PGP keys for free online with PGPkeygenerator.com. Safeguard your communications with a trusted Open Source PGP key generator tool.">
 
     <!-- Open Graph Meta Tags for social media sharing -->
     <meta property="og:title" content="PGPkeygenerator.com - Generate OpenPGP keys online securely">
@@ -78,7 +80,9 @@
             box-shadow: 2px 2px #272727;
         }
 
-        .copy-button:hover, .download-button:hover, #generate-keys-button:hover {
+        .copy-button:hover,
+        .download-button:hover,
+        #generate-keys-button:hover {
             text-decoration: underline;
         }
 
@@ -129,7 +133,7 @@
         }
 
         #copyright-holder {
-            clear:both;
+            clear: both;
             margin-top: 10px;
         }
 
@@ -259,7 +263,9 @@
                 padding: 0.5rem 0.5rem;
             }
 
-            .security-banner{ width:85%; }
+            .security-banner {
+                width: 85%;
+            }
 
         }
     </style>
@@ -278,26 +284,30 @@
 
 <body>
 
-    <div class="security-banner" style="background: #eefbff; border: 1px solid #007bff; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center;">
-  <span style="font-size: 24px; margin-right: 15px;">🛡️</span>
-  <div>
-    <strong>Air-Gap Ready:</strong> This tool is 100% client-side. Once the page is loaded, you can <strong>disconnect your internet</strong> to generate your keys in a completely isolated environment.
-    <a href="faq.html" style="color: #007bff; text-decoration: underline; margin-left: 5px;">Learn more</a>
-  </div>
-</div>
-    
+    <div class="security-banner"
+        style="background: #eefbff; border: 1px solid #007bff; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center;">
+        <span style="font-size: 24px; margin-right: 15px;">🛡️</span>
+        <div>
+            <strong>Air-Gap Ready:</strong> This tool is 100% client-side. Once the page is loaded, you can
+            <strong>disconnect your internet</strong> to generate your keys in a completely isolated environment.
+            <a href="faq.html" style="color: #007bff; text-decoration: underline; margin-left: 5px;">Learn more</a>
+        </div>
+    </div>
+
     <div id="title-and-parameters-holder">
 
         <div id="title-holder">
             <h1 class="title" style="margin-bottom:0px;">🔑 PGPkeygenerator.com</h1>
-            <p>PGPkeygenerator.com is an <u>Open Source</u>, <u>free</u>, <u>online</u> and <u>secure</u> PGP key
+            <p>PGPkeygenerator.com is an Open Source, free, online and secure PGP key
                 generator.</p>
             <ul>
-                <li><a href="https://github.com/athanasiosem/pgpkeygenerator.com">Open Source project</a>. The <a href="https://openpgpjs.org/">OpenPGP.js</a> library is used.</li>
-                <li>All code <u>runs on the client-side</u>. <u>No servers involved</u>.</li>
-                <li><u>No user tracking</u>. Feel free to <u>unplug the Internet</u> before use.</li>
+                <li><a href="https://github.com/athanasiosem/pgpkeygenerator.com">Open Source project</a>. The <a
+                        href="https://openpgpjs.org/">OpenPGP.js</a> library is used.</li>
+                <li>All code runs on the client-side. No servers involved.</li>
+                <li>No user tracking. Feel free to unplug the Internet before use.</li>
             </ul>
-            <p style="margin-bottom:0px;"><a href="faq.html">Read the FAQ</a> for more information or <a href="about-pgp-encryption.html">learn about PGP encryption.</a></p>
+            <p style="margin-bottom:0px;"><a href="faq.html">Read the FAQ</a> for more information or <a
+                    href="about-pgp-encryption.html">learn about PGP encryption.</a></p>
         </div>
 
         <div id="parameters-holder">
@@ -518,7 +528,7 @@
                 optionsEmailValue, optionsPassphraseValue,
                 optionsExpirationTimeValue
             };
-            
+
             if (!optionsEmail.checkValidity()) {
                 alert('Please enter a valid email address.');
                 return;
@@ -548,5 +558,3 @@
 </body>
 
 </html>
-
-
