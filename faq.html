@@ -5,20 +5,20 @@
     <title>PGPkeygenerator.com - Generate OpenPGP keys online securely - FAQ</title>
     <meta charset="UTF-8">
     <meta name="author" content="Athanasios Emmanouilidis">
-    <meta name="keywords" content="PGP, key generator, cryptography">
+    <meta name="keywords" content="PGP, key generator, cryptography, FAQ">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#272727">
     <meta name="apple-mobile-web-app-status-bar-style" content="#272727">
-    <meta name="description" content="PGPkeygenerator.com is a free, online and secure PGP key generator.">
+    <meta name="description" content="Frequently Asked Questions about PGPkeygenerator.com and OpenPGP encryption.">
 
-    <meta property="og:title" content="PGPkeygenerator.com - Generate OpenPGP keys online securely">
-    <meta property="og:description" content="Generate OpenPGP keys online securely.">
-    <meta property="og:url" content="https://pgpkeygenerator.com">
+    <meta property="og:title" content="PGPkeygenerator.com - FAQ">
+    <meta property="og:description" content="Frequently Asked Questions regarding secure PGP key generation.">
+    <meta property="og:url" content="https://pgpkeygenerator.com/faq">
     <meta property="og:type" content="website">
 
-    <meta name="twitter:title" content="PGPkeygenerator.com - Generate OpenPGP keys online securely">
-    <meta name="twitter:description" content="Generate OpenPGP keys online securely.">
+    <meta name="twitter:title" content="PGPkeygenerator.com - FAQ">
+    <meta name="twitter:description" content="Frequently Asked Questions regarding secure PGP key generation.">
 
     <style>
         body {
@@ -162,6 +162,7 @@
             margin-top: 25px;
             margin-bottom: 5px;
         }
+
         /* ---------------------------------- */
 
 
@@ -323,40 +324,57 @@
 
         <div class="faq-item">
             <h3>1. How does PGPKeygenerator.com work?</h3>
-            <p>PGPKeygenerator.com is an open-source, client-side tool designed for privacy. We utilize <strong>OpenPGP.js</strong>, a battle-tested open-source JavaScript library, to handle all cryptographic functions.</p>
+            <p>PGPKeygenerator.com is an open-source, client-side tool designed for privacy. We utilize
+                <strong>OpenPGP.js</strong>, a battle-tested open-source JavaScript library, to handle all cryptographic
+                functions.</p>
             <ul>
-                <li><strong>100% Client-Side:</strong> All key generation happens directly in your browser. Your private key, passphrase, and personal details <em>never</em> leave your device and are never sent to our servers.</li>
-                <li><strong>Audit Our Code:</strong> Because we are open-source, security experts and developers can inspect our source code on <a href="https://github.com/athanasiosem/pgpkeygenerator.com/">GitHub</a> to verify our security claims.</li>
-                <li><strong>No Tracking:</strong> We operate with a strict no-logs policy. We do not track your IP, store your keys, or monitor your activity.</li>
+                <li><strong>100% Client-Side:</strong> All key generation happens directly in your browser. Your private
+                    key, passphrase, and personal details <em>never</em> leave your device and are never sent to our
+                    servers.</li>
+                <li><strong>Audit Our Code:</strong> Because we are open-source, security experts and developers can
+                    inspect our source code on <a href="https://github.com/athanasiosem/pgpkeygenerator.com/">GitHub</a>
+                    to verify our security claims.</li>
+                <li><strong>No Tracking:</strong> We operate with a strict no-logs policy. We do not track your IP,
+                    store your keys, or monitor your activity.</li>
             </ul>
             <div class="faq-alert faq-tip">
-                <strong>💡 Pro Tip:</strong> For maximum security, we recommend you load the page and <strong>disconnect your internet connection</strong> before clicking "Generate." This ensures your keys are created in an offline environment.
+                <strong>💡 Pro Tip:</strong> For maximum security, we recommend you load the page and <strong>disconnect
+                    your internet connection</strong> before clicking "Generate." This ensures your keys are created in
+                an offline environment.
             </div>
         </div>
 
         <div class="faq-item">
             <h3>2. Is this service free?</h3>
-            <p>Yes. We believe encryption should be accessible to everyone. The tool is free to use for personal and commercial purposes. If the tool helped you, <a href="https://www.paypal.com/donate/?hosted_button_id=64JHJZEC2L98G">consider donating</a> to keep the project alive.</p>
+            <p>Yes. We believe encryption should be accessible to everyone. The tool is free to use for personal and
+                commercial purposes. If the tool helped you, <a
+                    href="https://www.paypal.com/donate/?hosted_button_id=64JHJZEC2L98G">consider donating</a> to keep
+                the project alive.</p>
         </div>
 
         <div class="faq-item">
             <h3>3. Is it safe to generate PGP keys in a browser?</h3>
-            <p>While we take every precaution to ensure safety (HTTPS, client-side execution), browser-based cryptography has inherent risks compared to command-line tools.</p>
+            <p>While we take every precaution to ensure safety (HTTPS, client-side execution), browser-based
+                cryptography has inherent risks compared to command-line tools.</p>
             <ul>
-                <li><strong>The Risk:</strong> Malicious browser extensions or malware on your computer could potentially snoop on the browser window.</li>
-                <li><strong>The Solution:</strong> We recommend using a clean browser profile (incognito mode/private window) with no extensions enabled to minimize this risk.</li>
+                <li><strong>The Risk:</strong> Malicious browser extensions or malware on your computer could
+                    potentially snoop on the browser window.</li>
+                <li><strong>The Solution:</strong> We recommend using a clean browser profile (incognito mode/private
+                    window) with no extensions enabled to minimize this risk.</li>
             </ul>
         </div>
 
         <div class="faq-item">
             <h3>4. What happens if I lose my Private Key or Passphrase?</h3>
+            <p>PGP is designed to be impossible to break by force. This means:</p>
+            <ul>
+                <li>If you lose your <strong>Private Key</strong>, you will lose access to all messages encrypted with
+                    your Public Key.</li>
+                <li>If you forget your <strong>Passphrase</strong>, your Private Key becomes useless.</li>
+            </ul>
             <div class="faq-alert faq-warning">
-                <strong>⚠️ Please be careful:</strong> PGP is designed to be impossible to break.
-                <ul>
-                    <li>If you lose your <strong>Private Key</strong>, you will lose access to all messages encrypted with your Public Key.</li>
-                    <li>If you forget your <strong>Passphrase</strong>, your Private Key becomes useless.</li>
-                    <li><strong>We cannot recover keys for you.</strong> Because we never store your data, we have no way to help you recover lost keys or passwords. Please back them up securely immediately after generation.</li>
-                </ul>
+                <strong>⚠️ Important:</strong> We cannot recover keys for you. Because we never store your data, we have
+                no way to help you recover lost keys or passwords.
             </div>
         </div>
 
@@ -364,29 +382,45 @@
             <h3>5. How do I generate a key pair?</h3>
             <p>PGPKeygenerator.com simplifies the process:</p>
             <ol>
-                <li><strong>Algorithm:</strong> Choose RSA (legacy compatibility) or ECC (modern, faster, and more secure).</li>
+                <li><strong>Algorithm:</strong> Choose RSA (legacy compatibility) or ECC (modern, faster, and more
+                    secure).</li>
                 <li><strong>Details:</strong> Enter the Name and Email you want associated with this key identity.</li>
-                <li><strong>Passphrase:</strong> Set a strong passphrase. This encrypts your private key file so that if someone steals the file, they still cannot use it without your password.</li>
-                <li><strong>Generate:</strong> Click the button. Once finished, <strong>immediately download</strong> your Public and Private keys and store them safely.</li>
+                <li><strong>Passphrase:</strong> Set a strong passphrase. This encrypts your private key file so that if
+                    someone steals the file, they still cannot use it without your password.</li>
+                <li><strong>Generate & Download:</strong> Click the button. Once finished, <strong>download your Public
+                        Key, Private Key, and Revocation Certificate.</strong> Store them all safely.</li>
             </ol>
         </div>
 
         <div class="faq-item">
             <h3>6. Can I use these keys with other software?</h3>
-            <p>Yes. The keys generated here adhere to the OpenPGP standard (RFC 4880/9580). They are fully compatible with:</p>
+            <p>Yes. The keys generated here adhere to the OpenPGP standard (RFC 4880/9580). They are fully compatible
+                with:</p>
             <ul>
                 <li><strong>Email Clients:</strong> Thunderbird (Enigmail), Outlook (with plugins), Apple Mail.</li>
                 <li><strong>Software:</strong> GnuPG (GPG), Kleopatra, GPG4Win, and OpenKeychain.</li>
             </ul>
         </div>
 
+        <div class="faq-item">
+            <h3>7. Does this tool provide a Revocation Certificate?</h3>
+            <p><strong>Yes.</strong> Unlike many other online tools, PGPKeygenerator.com automatically generates a
+                revocation certificate for you alongside your keys.</p>
+            <p>A revocation certificate is a special file used to invalidate your key if your Private Key is ever lost
+                or stolen. You should store this file in a separate, secure location (like an offline USB drive).
+                Without it, you cannot warn the PGP network that a compromised key should no longer be trusted.</p>
+
+        </div>
+
         <hr>
-        
-        <p>If you have any further questions or encounter issues, please <a href="mailto:a@emman.dev">contact the author</a> for assistance.</p>
+
+        <p>If you have any further questions or encounter issues, please <a href="mailto:a@emman.dev">contact the
+                author</a> for assistance.</p>
 
     </div>
 
     <div id="copyright-holder">Copyright 2025 - <a href="https://emman.dev">Athanasios Emmanouilidis</a></div>
 
 </body>
+
 </html>
