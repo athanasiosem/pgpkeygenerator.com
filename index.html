@@ -301,8 +301,8 @@
             <p>PGPkeygenerator.com is an Open Source, free, online and secure PGP key
                 generator.</p>
             <ul>
-                <li><a href="https://github.com/athanasiosem/pgpkeygenerator.com">Open Source project</a>. The <a
-                        href="https://openpgpjs.org/">OpenPGP.js</a> library is used.</li>
+                <li><a href="https://github.com/athanasiosem/pgpkeygenerator.com" target="_blank" rel="noopener noreferrer">Open Source project</a>. The <a
+                        href="https://openpgpjs.org/" target="_blank" rel="noopener noreferrer">OpenPGP.js</a> library is used.</li>
                 <li>All code runs on the client-side. No servers involved.</li>
                 <li>No user tracking. Feel free to unplug the Internet before use.</li>
             </ul>
@@ -419,7 +419,7 @@
 
     </div>
 
-    <div id="copyright-holder">Copyright 2025 - <a href="https://emman.dev">Athanasios Emmanouilidis</a></div>
+    <div id="copyright-holder">Copyright 2025 - <a href="https://emman.dev" target="_blank" rel="noopener noreferrer">Athanasios Emmanouilidis</a></div>
 
 
     <script>
@@ -442,16 +442,16 @@
             const textareaName = event.getAttribute('content');
 
             const textarea = document.querySelector("#" + textareaName);
-
-            // Select the text area
-            textarea.select();
-            textarea.setSelectionRange(0, 99999); // For mobile devices
-
-            // Copy the text of textarea
-            navigator.clipboard.writeText(textarea.value);
-
-            // Alert the copied text
-            alert(textarea.labels[0].textContent.trimStart().trimEnd() + " successfully copied to clipboard.");
+            
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                const originalText = event.innerText;
+                event.innerText = "Copied!";
+                setTimeout(() => {
+                    event.innerText = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error("Failed to copy: ", err);
+            });
         }
 
         const keyAlgorithmChanged = (event) => {
