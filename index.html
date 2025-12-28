@@ -249,6 +249,7 @@
             console.error("Worker error:", error);
             alert("An error occurred with the background worker. Please reload the page.");
             buttonGenerateKeys.disabled = false;
+            buttonGenerateKeys.innerText = "Generate Keys";
         };
 
         worker.onmessage = async function handleMessageFromMain(msg) {
@@ -256,6 +257,7 @@
             if (msg.data.error) {
                 alert("Error generating keys: " + msg.data.error);
                 buttonGenerateKeys.disabled = false;
+                buttonGenerateKeys.innerText = "Generate Keys";
                 return;
             }
 
@@ -272,6 +274,7 @@
             downloadRevocationCertificateButton.classList.add("download-button");
 
             buttonGenerateKeys.disabled = false;
+            buttonGenerateKeys.innerText = "Generate Keys";
 
             copyPrivateKeyButton.disabled = false;
             copyPublicKeyButton.disabled = false;
@@ -316,6 +319,7 @@
             downloadRevocationCertificateButton.classList.remove("download-button");
 
             buttonGenerateKeys.disabled = true;
+            buttonGenerateKeys.innerText = "Generating...";
 
             copyPrivateKeyButton.disabled = true;
             copyPublicKeyButton.disabled = true;
