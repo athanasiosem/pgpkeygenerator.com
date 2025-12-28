@@ -1,6 +1,6 @@
 (async () => {
 
-    importScripts('https://cdn.jsdelivr.net/npm/openpgp@5.11.2/dist/openpgp.min.js');
+    importScripts('https://cdn.jsdelivr.net/npm/openpgp@6.3.0/dist/openpgp.min.js');
 
     self.onmessage = async function handleMessageFromMain(msg) {
 
