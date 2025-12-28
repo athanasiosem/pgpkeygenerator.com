@@ -183,6 +183,26 @@
 
     <script>
 
+        const privateKeyTextarea = document.querySelector("#private-key-textarea");
+        const publicKeyTextarea = document.querySelector("#public-key-textarea");
+        const revocationCertificateTextarea = document.querySelector("#revocation-certificate-textarea");
+
+        const buttonGenerateKeys = document.querySelector("#generate-keys-button");
+        const optionsType = document.querySelector("#options-type");
+        const optionsKeySize = document.querySelector("#options-key-size");
+        const optionsName = document.querySelector("#options-name");
+        const optionsEmail = document.querySelector("#options-email");
+        const optionsPassphrase = document.querySelector("#options-passphrase");
+        const optionsExpirationTime = document.querySelector("#options-expiration");
+
+        const copyPrivateKeyButton = document.querySelector("#copy-private-key-button");
+        const copyPublicKeyButton = document.querySelector("#copy-public-key-button");
+        const copyRevocationCertificateButton = document.querySelector("#copy-revocation-certificate-button");
+
+        const downloadPrivateKeyButton = document.querySelector("#download-private-key-button");
+        const downloadPublicKeyButton = document.querySelector("#download-public-key-button");
+        const downloadRevocationCertificateButton = document.querySelector("#download-revocation-certificate-button");
+
         const downloadFile = (element) => {
 
             const textareaName = element.dataset.target;
@@ -223,6 +243,13 @@
         };
 
         const worker = new Worker("worker.js");
+
+        worker.onerror = (error) => {
+            console.error("Worker error:", error);
+            alert("An error occurred with the background worker. Please reload the page.");
+            buttonGenerateKeys.disabled = false;
+        };
+
         worker.onmessage = async function handleMessageFromMain(msg) {
 
             if (msg.data.error) {
@@ -257,26 +284,6 @@
             publicKeyTextarea.disabled = false;
             revocationCertificateTextarea.disabled = false;
         };
-
-        const privateKeyTextarea = document.querySelector("#private-key-textarea");
-        const publicKeyTextarea = document.querySelector("#public-key-textarea");
-        const revocationCertificateTextarea = document.querySelector("#revocation-certificate-textarea");
-
-        const buttonGenerateKeys = document.querySelector("#generate-keys-button");
-        const optionsType = document.querySelector("#options-type");
-        const optionsKeySize = document.querySelector("#options-key-size");
-        const optionsName = document.querySelector("#options-name");
-        const optionsEmail = document.querySelector("#options-email");
-        const optionsPassphrase = document.querySelector("#options-passphrase");
-        const optionsExpirationTime = document.querySelector("#options-expiration");
-
-        const copyPrivateKeyButton = document.querySelector("#copy-private-key-button");
-        const copyPublicKeyButton = document.querySelector("#copy-public-key-button");
-        const copyRevocationCertificateButton = document.querySelector("#copy-revocation-certificate-button");
-
-        const downloadPrivateKeyButton = document.querySelector("#download-private-key-button");
-        const downloadPublicKeyButton = document.querySelector("#download-public-key-button");
-        const downloadRevocationCertificateButton = document.querySelector("#download-revocation-certificate-button");
 
         const generateKeys = () => {
 
