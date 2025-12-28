@@ -14,6 +14,9 @@
     <meta name="description"
         content="Generate secure PGP keys for free online with PGPkeygenerator.com. Safeguard your communications with a trusted Open Source PGP key generator tool.">
 
+    <!-- Content Security Policy to restrict resources and ensure client-side only execution -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';">
+
     <!-- Open Graph Meta Tags for social media sharing -->
     <meta property="og:title" content="PGPkeygenerator.com - Generate OpenPGP keys online securely">
     <meta property="og:description" content="Generate OpenPGP keys online securely.">
@@ -130,9 +133,9 @@
                     </label>
                 </h2>
                 <div class="button-holder">
-                    <button id="copy-private-key-button" type="button" content="private-key-textarea"
+                    <button id="copy-private-key-button" type="button" data-target="private-key-textarea"
                         onclick="copyToClipboard(this)" disabled>Copy</button>
-                    <button id="download-private-key-button" type="button" content="private-key-textarea"
+                    <button id="download-private-key-button" type="button" data-target="private-key-textarea"
                         onclick="downloadFile(this)" disabled>Download File</button>
                 </div>
                 <textarea id="private-key-textarea" name="private-key-textarea" rows="10" cols="40" disabled
@@ -146,9 +149,9 @@
                     </label>
                 </h2>
                 <div class="button-holder">
-                    <button id="copy-public-key-button" type="button" content="public-key-textarea"
+                    <button id="copy-public-key-button" type="button" data-target="public-key-textarea"
                         onclick="copyToClipboard(this)" disabled>Copy</button>
-                    <button id="download-public-key-button" type="button" content="public-key-textarea"
+                    <button id="download-public-key-button" type="button" data-target="public-key-textarea"
                         onclick="downloadFile(this)" disabled>Download File</button>
                 </div>
                 <textarea id="public-key-textarea" name="public-key-textarea" rows="10" cols="40" disabled
@@ -163,9 +166,9 @@
                 </h2>
                 <div class="button-holder">
                     <button id="copy-revocation-certificate-button" type="button"
-                        content="revocation-certificate-textarea" onclick="copyToClipboard(this)" disabled>Copy</button>
+                        data-target="revocation-certificate-textarea" onclick="copyToClipboard(this)" disabled>Copy</button>
                     <button id="download-revocation-certificate-button" type="button"
-                        content="revocation-certificate-textarea" onclick="downloadFile(this)" disabled>Download
+                        data-target="revocation-certificate-textarea" onclick="downloadFile(this)" disabled>Download
                         File</button>
                 </div>
                 <textarea id="revocation-certificate-textarea" name="revocation-certificate-textarea" rows="10"
@@ -180,9 +183,9 @@
 
     <script>
 
-        const downloadFile = (event) => {
+        const downloadFile = (element) => {
 
-            const textareaName = event.getAttribute('content');
+            const textareaName = element.dataset.target;
 
             const link = document.createElement("a");
             const content = document.querySelector("#" + textareaName).value;
@@ -193,26 +196,26 @@
             URL.revokeObjectURL(link.href);
         };
 
-        const copyToClipboard = (event) => {
+        const copyToClipboard = (element) => {
 
-            const textareaName = event.getAttribute('content');
+            const textareaName = element.dataset.target;
 
             const textarea = document.querySelector("#" + textareaName);
             
             navigator.clipboard.writeText(textarea.value).then(() => {
-                const originalText = event.innerText;
-                event.innerText = "Copied!";
+                const originalText = element.innerText;
+                element.innerText = "Copied!";
                 setTimeout(() => {
-                    event.innerText = originalText;
+                    element.innerText = originalText;
                 }, 2000);
             }).catch(err => {
                 console.error("Failed to copy: ", err);
             });
         }
 
-        const keyAlgorithmChanged = (event) => {
+        const keyAlgorithmChanged = (element) => {
 
-            if (event.value == "rsa") {
+            if (element.value == "rsa") {
                 document.querySelector("#key-size-select-holder").classList.remove("key-size-select-holder");
             } else {
                 document.querySelector("#key-size-select-holder").classList.add("key-size-select-holder");
