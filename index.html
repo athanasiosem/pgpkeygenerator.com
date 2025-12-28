@@ -15,7 +15,7 @@
         content="Generate secure PGP keys for free online with PGPkeygenerator.com. Safeguard your communications with a trusted Open Source PGP key generator tool.">
 
     <!-- Content Security Policy to restrict resources and ensure client-side only execution -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data:; font-src 'self'; connect-src 'self';">
 
     <!-- Open Graph Meta Tags for social media sharing -->
     <meta property="og:title" content="PGPkeygenerator.com - Generate OpenPGP keys online securely">
@@ -189,6 +189,7 @@
 
         const buttonGenerateKeys = document.querySelector("#generate-keys-button");
         const optionsType = document.querySelector("#options-type");
+        const keySizeSelectHolder = document.querySelector("#key-size-select-holder");
         const optionsKeySize = document.querySelector("#options-key-size");
         const optionsName = document.querySelector("#options-name");
         const optionsEmail = document.querySelector("#options-email");
@@ -236,9 +237,9 @@
         const keyAlgorithmChanged = (element) => {
 
             if (element.value == "rsa") {
-                document.querySelector("#key-size-select-holder").classList.remove("key-size-select-holder");
+                keySizeSelectHolder.classList.remove("key-size-select-holder");
             } else {
-                document.querySelector("#key-size-select-holder").classList.add("key-size-select-holder");
+                keySizeSelectHolder.classList.add("key-size-select-holder");
             }
         };
 
