@@ -252,10 +252,21 @@
             buttonGenerateKeys.innerText = "Generate Keys";
         };
 
+        // Pending resolver for MCP tool calls that need to await key generation
+        let _mcpPendingResolve = null;
+        let _mcpPendingReject = null;
+
         worker.onmessage = async function handleMessageFromMain(msg) {
 
             if (msg.data.error) {
-                alert("Error generating keys: " + msg.data.error);
+                if (_mcpPendingReject) {
+                    const reject = _mcpPendingReject;
+                    _mcpPendingResolve = null;
+                    _mcpPendingReject = null;
+                    reject(new Error(msg.data.error));
+                } else {
+                    alert("Error generating keys: " + msg.data.error);
+                }
                 buttonGenerateKeys.disabled = false;
                 buttonGenerateKeys.innerText = "Generate Keys";
                 return;
@@ -287,6 +298,18 @@
             privateKeyTextarea.disabled = false;
             publicKeyTextarea.disabled = false;
             revocationCertificateTextarea.disabled = false;
+
+            // Resolve MCP tool call if one is pending
+            if (_mcpPendingResolve) {
+                const resolve = _mcpPendingResolve;
+                _mcpPendingResolve = null;
+                _mcpPendingReject = null;
+                resolve({
+                    privateKey: msg.data.privateKey,
+                    publicKey: msg.data.publicKey,
+                    revocationCertificate: msg.data.revocationCertificate
+                });
+            }
         };
 
         const generateKeys = () => {
@@ -331,6 +354,90 @@
             worker.postMessage(optionsObject);
 
         };
+
+        // ── WebMCP (Chrome Canary navigator.modelContext) ──────────────────────
+        // Registers a generate_pgp_keys tool so in-browser AI agents can call it.
+        // Gracefully does nothing on browsers that don't support the API yet.
+        if (typeof navigator !== 'undefined' && navigator.modelContext) {
+            navigator.modelContext.registerTool({
+                name: 'generate_pgp_keys',
+                description: 'Generate a PGP key pair (private key, public key, and revocation certificate) using OpenPGP.js. All computation happens client-side in the browser.',
+                inputSchema: {
+                    type: 'object',
+                    properties: {
+                        name: {
+                            type: 'string',
+                            description: 'Full name for the PGP user ID (e.g. "Alice Smith")'
+                        },
+                        email: {
+                            type: 'string',
+                            description: 'Email address for the PGP user ID (e.g. "alice@example.com")'
+                        },
+                        type: {
+                            type: 'string',
+                            enum: ['ecc', 'rsa'],
+                            description: 'Key algorithm. "ecc" uses Curve25519 (modern, fast, recommended). "rsa" uses RSA. Defaults to "ecc".'
+                        },
+                        keySize: {
+                            type: 'number',
+                            enum: [2048, 4096],
+                            description: 'RSA key size in bits. Only used when type is "rsa". Defaults to 4096.'
+                        },
+                        passphrase: {
+                            type: 'string',
+                            description: 'Optional passphrase to protect the private key. Leave empty for no passphrase.'
+                        },
+                        expirationTime: {
+                            type: 'number',
+                            description: 'Key expiration time in seconds from now. Use 0 for no expiration. Common values: 31536000 (1 year), 63072000 (2 years). Defaults to 0.'
+                        }
+                    },
+                    required: ['name', 'email']
+                },
+                execute: async (args) => {
+                    const {
+                        name,
+                        email,
+                        type = 'ecc',
+                        keySize = 4096,
+                        passphrase = '',
+                        expirationTime = 0
+                    } = args;
+
+                    // Populate the form fields so the UI reflects the generation
+                    optionsName.value = name;
+                    optionsEmail.value = email;
+                    optionsType.value = type;
+                    keyAlgorithmChanged(optionsType);
+                    optionsKeySize.value = String(keySize);
+                    optionsPassphrase.value = passphrase;
+                    optionsExpirationTime.value = String(expirationTime);
+
+                    // Trigger key generation and await the worker result via Promise
+                    const result = await new Promise((resolve, reject) => {
+                        _mcpPendingResolve = resolve;
+                        _mcpPendingReject = reject;
+                        generateKeys();
+                    });
+
+                    return {
+                        content: [{
+                            type: 'text',
+                            text: [
+                                '=== Private Key ===',
+                                result.privateKey,
+                                '',
+                                '=== Public Key ===',
+                                result.publicKey,
+                                '',
+                                '=== Revocation Certificate ===',
+                                result.revocationCertificate
+                            ].join('\n')
+                        }]
+                    };
+                }
+            });
+        }
     </script>
 </body>
 
