@@ -6,26 +6,29 @@
     <meta charset="UTF-8">
     <meta name="author" content="Athanasios Emmanouilidis">
     <meta name="keywords"
-        content="PGP, key generator, cryptography, encryption, privacy, public key, private key, PGP encryption, GPG, secure communication, digital signature, email encryption, PGP key management, cryptographic keys, asymmetric encryption, public key infrastructure, data protection, secure messaging, cryptographic security, key pair generation, key storage, security tools, cryptographic software, encryption tools">
+        content="PGP, key generator, cryptography, encryption, privacy, public key, private key, PGP encryption, GPG, secure communication, digital signature, email encryption, PGP key management, cryptographic keys, asymmetric encryption, public key infrastructure, data protection, secure messaging, cryptographic security, key pair generation, key storage, security tools, cryptographic software, encryption tools, WebMCP, AI agent, MCP tool, model context protocol, AI PGP key generation, browser AI tool">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#272727">
     <meta name="apple-mobile-web-app-status-bar-style" content="#272727">
     <meta name="description"
-        content="Generate secure PGP keys for free online with PGPkeygenerator.com. Safeguard your communications with a trusted Open Source PGP key generator tool.">
+        content="Generate secure PGP keys for free online with PGPkeygenerator.com. Open Source, client-side PGP key generator with WebMCP support — let your AI agent generate PGP keys directly in the browser.">
 
     <!-- Content Security Policy to restrict resources and ensure client-side only execution -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cdn.jsdelivr.net;">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cdn.jsdelivr.net;">
 
     <!-- Open Graph Meta Tags for social media sharing -->
     <meta property="og:title" content="PGPkeygenerator.com - Generate OpenPGP keys online securely">
-    <meta property="og:description" content="Generate OpenPGP keys online securely.">
+    <meta property="og:description"
+        content="Free, Open Source, client-side PGP key generator with WebMCP support. Let your AI agent generate PGP keys directly in the browser.">
     <meta property="og:url" content="https://pgpkeygenerator.com">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags for Twitter sharing -->
     <meta name="twitter:title" content="PGPkeygenerator.com - Generate OpenPGP keys online securely">
-    <meta name="twitter:description" content="Generate OpenPGP keys online securely.">
+    <meta name="twitter:description"
+        content="Free, Open Source, client-side PGP key generator with WebMCP support. Let your AI agent generate PGP keys directly in the browser.">
 
     <link rel="stylesheet" href="style.css">
 
@@ -47,7 +50,8 @@
         style="background: #eefbff; border: 1px solid #007bff; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center;">
         <span style="font-size: 24px; margin-right: 15px;">🛡️</span>
         <div>
-            <strong>Air-Gap Ready:</strong> This tool is 100% client-side. No servers involved - No user tracking. Once the page is loaded, feel free
+            <strong>Air-Gap Ready:</strong> This tool is 100% client-side. No servers involved - No user tracking. Once
+            the page is loaded, feel free
             <strong>to disconnect your internet</strong>.
             <a href="faq.html" style="color: #007bff; text-decoration: underline; margin-left: 5px;">Learn more</a>
         </div>
@@ -60,10 +64,12 @@
             <p>PGPkeygenerator.com is an Open Source, free, online and secure PGP key
                 generator.</p>
             <ul>
-                <li><a href="https://github.com/athanasiosem/pgpkeygenerator.com" target="_blank" rel="noopener noreferrer">Open Source project</a>. The <a
-                        href="https://openpgpjs.org/" target="_blank" rel="noopener noreferrer">OpenPGP.js</a> library is used.</li>
+                <li><a href="https://github.com/athanasiosem/pgpkeygenerator.com" target="_blank"
+                        rel="noopener noreferrer">Open Source project</a>. The <a href="https://openpgpjs.org/"
+                        target="_blank" rel="noopener noreferrer">OpenPGP.js</a> library is used.</li>
                 <li>All code runs on the client-side. No servers involved - No user tracking.</li>
-                <li>🆕 WebMCP support. Your AI agent can generate PGP keys.</li>
+                <li>🤖 <strong>WebMCP support</strong> — your AI agent can generate PGP keys directly in the browser via
+                    the <code>generate_pgp_keys</code> tool. <a href="faq.html#webmcp">Learn more</a></li>
             </ul>
             <p style="margin-bottom:0px;"><a href="faq.html">Read the FAQ</a> for more information or <a
                     href="about-pgp-encryption.html">learn about PGP encryption.</a></p>
@@ -166,7 +172,8 @@
                 </h2>
                 <div class="button-holder">
                     <button id="copy-revocation-certificate-button" type="button"
-                        data-target="revocation-certificate-textarea" onclick="copyToClipboard(this)" disabled>Copy</button>
+                        data-target="revocation-certificate-textarea" onclick="copyToClipboard(this)"
+                        disabled>Copy</button>
                     <button id="download-revocation-certificate-button" type="button"
                         data-target="revocation-certificate-textarea" onclick="downloadFile(this)" disabled>Download
                         File</button>
@@ -178,7 +185,23 @@
 
     </div>
 
-    <div id="copyright-holder">Copyright 2026 - <a href="https://emman.dev" target="_blank" rel="noopener noreferrer">Athanasios Emmanouilidis</a></div>
+    <div id="webmcp-banner"
+        style="background: #f0f7ff; border: 1px solid #4a90d9; padding: 18px 20px; border-radius: 8px; margin: 24px 0; display: flex; align-items: flex-start; gap: 16px;">
+        <span style="font-size: 28px; flex-shrink: 0;">🤖</span>
+        <div>
+            <strong style="font-size: 16px;">WebMCP Support — AI Agents Welcome</strong>
+            <p style="margin: 6px 0 0;">This page exposes a <code>generate_pgp_keys</code> MCP tool via the
+                <a href="https://github.com/explainers-by-googlers/web-mcp" target="_blank"
+                    rel="noopener noreferrer">WebMCP API</a>
+                (Chrome Canary). AI agents and MCP-compatible clients can call this tool to generate PGP key pairs
+                entirely client-side — no server, no data leaves the browser.
+                <a href="faq.html#webmcp">Read the FAQ</a> to learn how to use it.
+            </p>
+        </div>
+    </div>
+
+    <div id="copyright-holder">Copyright 2026 - <a href="https://emman.dev" target="_blank"
+            rel="noopener noreferrer">Athanasios Emmanouilidis</a></div>
 
 
     <script>
@@ -222,7 +245,7 @@
             const textareaName = element.dataset.target;
 
             const textarea = document.querySelector("#" + textareaName);
-            
+
             navigator.clipboard.writeText(textarea.value).then(() => {
                 const originalText = element.innerText;
                 element.innerText = "Copied!";
@@ -443,6 +466,3 @@
 
 
 </html>
-
-
-

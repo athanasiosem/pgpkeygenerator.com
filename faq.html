@@ -5,20 +5,24 @@
     <title>PGPkeygenerator.com - Generate OpenPGP keys online securely - FAQ</title>
     <meta charset="UTF-8">
     <meta name="author" content="Athanasios Emmanouilidis">
-    <meta name="keywords" content="PGP, key generator, cryptography, FAQ">
+    <meta name="keywords"
+        content="PGP, key generator, cryptography, FAQ, WebMCP, AI agent, MCP tool, model context protocol, AI PGP key generation">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#272727">
     <meta name="apple-mobile-web-app-status-bar-style" content="#272727">
-    <meta name="description" content="Frequently Asked Questions about PGPkeygenerator.com and OpenPGP encryption.">
+    <meta name="description"
+        content="Frequently Asked Questions about PGPkeygenerator.com, OpenPGP encryption, and WebMCP support for AI agents.">
 
     <meta property="og:title" content="PGPkeygenerator.com - FAQ">
-    <meta property="og:description" content="Frequently Asked Questions regarding secure PGP key generation.">
+    <meta property="og:description"
+        content="Frequently Asked Questions about PGP key generation and WebMCP support for AI agents.">
     <meta property="og:url" content="https://pgpkeygenerator.com/faq">
     <meta property="og:type" content="website">
 
     <meta name="twitter:title" content="PGPkeygenerator.com - FAQ">
-    <meta name="twitter:description" content="Frequently Asked Questions regarding secure PGP key generation.">
+    <meta name="twitter:description"
+        content="Frequently Asked Questions about PGP key generation and WebMCP support for AI agents.">
 
     <link rel="stylesheet" href="style.css">
 
@@ -49,19 +53,22 @@
             <h3>1. How does PGPKeygenerator.com work?</h3>
             <p>PGPKeygenerator.com is an open-source, client-side tool designed for privacy. We utilize
                 <strong>OpenPGP.js</strong>, a battle-tested open-source JavaScript library, to handle all cryptographic
-                functions.</p>
+                functions.
+            </p>
             <ul>
                 <li><strong>100% Client-Side:</strong> All key generation happens directly in your browser. Your private
                     key, passphrase, and personal details <em>never</em> leave your device and are never sent to our
                     servers.</li>
                 <li><strong>Audit Our Code:</strong> Because we are open-source, security experts and developers can
-                    inspect our source code on <a href="https://github.com/athanasiosem/pgpkeygenerator.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    inspect our source code on <a href="https://github.com/athanasiosem/pgpkeygenerator.com/"
+                        target="_blank" rel="noopener noreferrer">GitHub</a>
                     to verify our security claims.</li>
                 <li><strong>No Tracking:</strong> We operate with a strict no-logs policy. We do not track your IP,
                     store your keys, or monitor your activity.</li>
             </ul>
             <div class="faq-alert faq-tip">
-                <strong>💡 Pro Tip:</strong> You can run this tool <strong>offline</strong>. Once the page is loaded, disconnect your internet to generate your keys in a private, isolated environment.
+                <strong>💡 Pro Tip:</strong> You can run this tool <strong>offline</strong>. Once the page is loaded,
+                disconnect your internet to generate your keys in a private, isolated environment.
             </div>
         </div>
 
@@ -69,7 +76,8 @@
             <h3>2. Is this service free?</h3>
             <p>Yes. We believe encryption should be accessible to everyone. The tool is free to use for personal and
                 commercial purposes. If the tool helped you, <a
-                    href="https://www.paypal.com/donate/?hosted_button_id=64JHJZEC2L98G" target="_blank" rel="noopener noreferrer">consider donating</a> to keep
+                    href="https://www.paypal.com/donate/?hosted_button_id=64JHJZEC2L98G" target="_blank"
+                    rel="noopener noreferrer">consider donating</a> to keep
                 the project alive.</p>
         </div>
 
@@ -133,6 +141,36 @@
 
         </div>
 
+        <div class="faq-item" id="webmcp">
+            <h3>8. What is WebMCP support and how can my AI agent use it?</h3>
+            <p>PGPkeygenerator.com implements the <strong>WebMCP API</strong> (also known as
+                <code>navigator.modelContext</code>), an emerging browser standard that allows web pages to expose tools
+                to AI agents and MCP-compatible clients running in the browser.</p>
+            <p>This page registers a <code>generate_pgp_keys</code> tool that any compatible AI agent can call to
+                generate a PGP key pair entirely client-side — no server involved, no data leaves your browser.</p>
+            <h4>Tool parameters</h4>
+            <ul>
+                <li><code>name</code> <em>(required)</em> — Full name for the PGP user ID, e.g.
+                    <code>"Alice Smith"</code></li>
+                <li><code>email</code> <em>(required)</em> — Email address, e.g. <code>"alice@example.com"</code></li>
+                <li><code>type</code> — Key algorithm: <code>"ecc"</code> (default, recommended) or <code>"rsa"</code>
+                </li>
+                <li><code>keySize</code> — RSA key size: <code>2048</code> or <code>4096</code> (default). Only used
+                    when <code>type</code> is <code>"rsa"</code>.</li>
+                <li><code>passphrase</code> — Optional passphrase to protect the private key.</li>
+                <li><code>expirationTime</code> — Expiration in seconds from now. <code>0</code> = never expires
+                    (default).</li>
+            </ul>
+            <div class="faq-alert faq-tip">
+                <strong>💡 How to test it:</strong> Enable <code>chrome://flags#webmcp-for-testing</code> in
+                <strong>Chrome Canary 146+</strong>, then install the
+                <a href="https://chromewebstore.google.com/detail/model-context-tool-inspector" target="_blank"
+                    rel="noopener noreferrer">Model Context Tool Inspector</a>
+                extension. Open this site and invoke the <code>generate_pgp_keys</code> tool with
+                <code>{ "name": "Alice Smith", "email": "alice@example.com" }</code>.
+            </div>
+        </div>
+
         <hr>
 
         <p>If you have any further questions or encounter issues, please <a href="mailto:a@emman.dev">contact the
@@ -140,7 +178,8 @@
 
     </div>
 
-    <div id="copyright-holder">Copyright 2026 - <a href="https://emman.dev" target="_blank" rel="noopener noreferrer">Athanasios Emmanouilidis</a></div>
+    <div id="copyright-holder">Copyright 2026 - <a href="https://emman.dev" target="_blank"
+            rel="noopener noreferrer">Athanasios Emmanouilidis</a></div>
 
 </body>
 
