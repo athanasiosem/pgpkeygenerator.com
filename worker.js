@@ -1,4 +1,4 @@
-importScripts('https://cdn.jsdelivr.net/npm/openpgp@6.3.0/dist/openpgp.min.js');
+importScripts('./openpgp.min.js');
 
 self.onmessage = async function handleMessageFromMain(msg) {
 
