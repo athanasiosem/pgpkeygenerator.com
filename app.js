@@ -57,6 +57,7 @@ const copyToClipboard = (element) => {
         }, 2000);
     }).catch(err => {
         console.error("Failed to copy: ", err);
+        showError("Failed to copy to clipboard. Please copy the text manually.");
     });
 }
 
