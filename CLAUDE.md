@@ -42,6 +42,10 @@ The site is intentionally minimal with no framework or bundler:
 
 Errors (worker failure, generation error, invalid email) are shown via `showError()` in `app.js`, which populates the `#error-message` div in the HTML. No `alert()` is used anywhere.
 
+### Design Decisions
+
+- Blank `name` field is intentionally allowed — users may generate keys without a name.
+
 ### WebMCP Integration
 
 `app.js` registers a `generate_pgp_keys` MCP tool via `navigator.modelContext` (Chrome Canary WebMCP API). The tool populates the form UI and calls `generateKeys()`, then resolves a Promise via `_mcpPendingResolve`/`_mcpPendingReject` when the worker responds. The registration is guarded so it silently does nothing on unsupported browsers.
