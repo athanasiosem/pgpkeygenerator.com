@@ -24,7 +24,8 @@ There are no build steps, lint commands, or tests.
 
 The site is intentionally minimal with no framework or bundler:
 
-- **`index.html`** — Main page. Contains all UI markup and inline JavaScript for key generation logic, clipboard/download utilities, and WebMCP tool registration.
+- **`index.html`** — Main page UI markup only. No inline JS or event handler attributes.
+- **`app.js`** — All application JavaScript: DOM element references, key generation logic, clipboard/download helpers, event listeners, and WebMCP tool registration. Loaded with `defer`.
 - **`worker.js`** — Web Worker that loads the self-hosted `openpgp.min.js` and performs the actual key generation off the main thread. Communicates with `index.html` via `postMessage`.
 - **`openpgp.min.js`** — Vendored OpenPGP.js v6.3.0. To upgrade, download the new minified build from jsDelivr and replace this file.
 - **`style.css`** — Shared stylesheet used by all pages. Two-column float layout on desktop (340px each side), responsive via `@media (max-width: 768px)`.
@@ -41,11 +42,11 @@ The site is intentionally minimal with no framework or bundler:
 
 ### WebMCP Integration
 
-`index.html` registers a `generate_pgp_keys` MCP tool via `navigator.modelContext` (Chrome Canary WebMCP API). The tool populates the form UI and calls `generateKeys()`, then resolves a Promise via `_mcpPendingResolve`/`_mcpPendingReject` when the worker responds. The registration is guarded so it silently does nothing on unsupported browsers.
+`app.js` registers a `generate_pgp_keys` MCP tool via `navigator.modelContext` (Chrome Canary WebMCP API). The tool populates the form UI and calls `generateKeys()`, then resolves a Promise via `_mcpPendingResolve`/`_mcpPendingReject` when the worker responds. The registration is guarded so it silently does nothing on unsupported browsers.
 
 ### Content Security Policy
 
-The CSP (`index.html` meta tag) restricts all resources to `'self'` only (plus `'unsafe-inline'` for styles/scripts since JS is inline). No external origins are permitted. Adding any external resource requires updating the CSP.
+The CSP (`index.html` meta tag) restricts all resources to `'self'` only. `script-src` has no `unsafe-inline` (JS is in `app.js`). `style-src` retains `'unsafe-inline'` due to inline `style` attributes on the banner elements. No external origins are permitted. Adding any external resource requires updating the CSP.
 
 ### Security Headers
 
