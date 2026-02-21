@@ -40,6 +40,8 @@ The site is intentionally minimal with no framework or bundler:
 4. Worker posts back `{ privateKey, publicKey, revocationCertificate }` (armored strings)
 5. Main thread populates the three textareas and enables copy/download buttons
 
+Errors (worker failure, generation error, invalid email) are shown via `showError()` in `app.js`, which populates the `#error-message` div in the HTML. No `alert()` is used anywhere.
+
 ### WebMCP Integration
 
 `app.js` registers a `generate_pgp_keys` MCP tool via `navigator.modelContext` (Chrome Canary WebMCP API). The tool populates the form UI and calls `generateKeys()`, then resolves a Promise via `_mcpPendingResolve`/`_mcpPendingReject` when the worker responds. The registration is guarded so it silently does nothing on unsupported browsers.
