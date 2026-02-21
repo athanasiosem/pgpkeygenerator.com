@@ -42,6 +42,11 @@ The site is intentionally minimal with no framework or bundler:
 
 Errors (worker failure, generation error, invalid email, clipboard failure) are shown via `showError()` in `app.js`, which populates the `#error-message` div in the HTML. No `alert()` is used anywhere.
 
+### Known Gaps
+
+- No automated tests — known gap, medium priority
+- Float-based CSS layout — functional but dated; known low-priority improvement
+
 ### Design Decisions
 
 - Blank `name` field is intentionally allowed — users may generate keys without a name.
