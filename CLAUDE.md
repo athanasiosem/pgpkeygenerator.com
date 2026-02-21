@@ -28,7 +28,7 @@ The site is intentionally minimal with no framework or bundler:
 - **`app.js`** — All application JavaScript: DOM element references, key generation logic, clipboard/download helpers, event listeners, and WebMCP tool registration. Loaded with `defer`.
 - **`worker.js`** — Web Worker that loads the self-hosted `openpgp.min.js` and performs the actual key generation off the main thread. Communicates with `index.html` via `postMessage`.
 - **`openpgp.min.js`** — Vendored OpenPGP.js v6.3.0. To upgrade, download the new minified build from jsDelivr and replace this file.
-- **`style.css`** — Shared stylesheet used by all pages. Two-column float layout on desktop (340px each side), responsive via `@media (max-width: 768px)`.
+- **`style.css`** — Shared stylesheet used by all pages. Two-column flexbox layout via `#main-content` wrapper (`flex: 1` each side), stacks to single column on mobile via `@media (max-width: 768px)`.
 - **`faq.html`** — FAQ page including WebMCP documentation.
 - **`about-pgp-encryption.html`** — Educational page about PGP encryption.
 
@@ -45,8 +45,6 @@ Errors (worker failure, generation error, invalid email, clipboard failure) are 
 ### Known Gaps
 
 - No automated tests — known gap, medium priority
-- Float-based CSS layout — functional but dated; known low-priority improvement
-
 ### Design Decisions
 
 - Blank `name` field is intentionally allowed — users may generate keys without a name.
