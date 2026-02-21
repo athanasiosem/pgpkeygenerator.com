@@ -16,7 +16,7 @@
 
     <!-- Content Security Policy to restrict resources and ensure client-side only execution -->
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self';">
+        content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self';">
 
     <!-- Open Graph Meta Tags for social media sharing -->
     <meta property="og:title" content="PGPkeygenerator.com - Generate OpenPGP keys online securely">
@@ -46,21 +46,20 @@
 
 <body>
 
-    <div class="security-banner"
-        style="background: #f0f7ff; border: 1px solid #4a90d9; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center;">
-        <span style="font-size: 24px; margin-right: 15px;">🛡️</span>
+    <div class="security-banner">
+        <span class="security-banner-icon">🛡️</span>
         <div>
             <strong>Air-Gap Ready:</strong> This tool is 100% client-side. No servers involved - No user tracking. Once
             the page is loaded, feel free
             <strong>to disconnect your internet</strong>.
-            <a href="faq.html" style="color: #007bff; text-decoration: underline; margin-left: 5px;">Learn more</a>
+            <a href="faq.html">Learn more</a>
         </div>
     </div>
 
     <div id="title-and-parameters-holder">
 
         <div id="title-holder">
-            <h1 class="title" style="margin-bottom:0px;">🔑 PGPkeygenerator.com</h1>
+            <h1 class="title">🔑 PGPkeygenerator.com</h1>
             <p>PGPkeygenerator.com is an Open Source, free, online and secure PGP key
                 generator.</p>
             <ul>
@@ -72,7 +71,7 @@
                     <a href="faq.html#webmcp">Learn more</a>
                 </li>
             </ul>
-            <p style="margin-bottom:0px;"><a href="faq.html">Read the FAQ</a> for more information or <a
+            <p><a href="faq.html">Read the FAQ</a> for more information or <a
                     href="about-pgp-encryption.html">learn about PGP encryption.</a></p>
         </div>
 
@@ -188,12 +187,11 @@
     <div id="copyright-holder">Copyright 2026 - <a href="https://emman.dev" target="_blank"
             rel="noopener noreferrer">Athanasios Emmanouilidis</a></div>
 
-    <div id="webmcp-banner"
-        style="background: lightyellow; border: 1px solid #272727; padding: 18px 20px; border-radius: 8px; margin: 24px 0; display: flex; align-items: flex-start; gap: 16px;">
-        <span style="font-size: 28px; flex-shrink: 0;">🤖</span>
+    <div id="webmcp-banner">
+        <span class="webmcp-banner-icon">🤖</span>
         <div>
-            <strong style="font-size: 16px;">WebMCP Support — AI Agents Welcome</strong>
-            <p style="margin: 6px 0 0;">This page exposes a <code>generate_pgp_keys</code> MCP tool via the
+            <strong>WebMCP Support — AI Agents Welcome</strong>
+            <p>This page exposes a <code>generate_pgp_keys</code> MCP tool via the
                 <a href="https://github.com/explainers-by-googlers/web-mcp" target="_blank"
                     rel="noopener noreferrer">WebMCP API</a>
                 (Chrome Canary). AI agents and MCP-compatible clients can call this tool to generate PGP key pairs
