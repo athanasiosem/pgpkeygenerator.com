@@ -83,4 +83,13 @@ test.describe('PGP Key Generation', () => {
         await expect(page.locator('#error-message')).toBeHidden();
     });
 
+    test('clears error when user starts retyping email', async ({ page }) => {
+        await page.fill('#options-email', 'not-an-email');
+        await page.click('#generate-keys-button');
+        await expect(page.locator('#error-message')).toBeVisible();
+
+        await page.locator('#options-email').pressSequentially('a');
+        await expect(page.locator('#error-message')).toBeHidden();
+    });
+
 });

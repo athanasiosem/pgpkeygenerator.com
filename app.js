@@ -196,6 +196,8 @@ downloadPrivateKeyButton.addEventListener("click", function () { downloadFile(th
 downloadPublicKeyButton.addEventListener("click", function () { downloadFile(this); });
 downloadRevocationCertificateButton.addEventListener("click", function () { downloadFile(this); });
 
+optionsEmail.addEventListener("input", clearError);
+
 // ── WebMCP (Chrome Canary navigator.modelContext) ──────────────────────────
 // Registers a generate_pgp_keys tool so in-browser AI agents can call it.
 // Gracefully does nothing on browsers that don't support the API yet.
