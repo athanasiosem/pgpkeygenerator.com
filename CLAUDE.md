@@ -63,6 +63,10 @@ Errors (worker failure, generation error, invalid email, clipboard failure) are 
 
 The CSP (`index.html` meta tag) is fully locked down: `script-src 'self'` and `style-src 'self'` — no `unsafe-inline` anywhere, no external origins. `index.html` has zero inline styles and zero inline scripts. All JS is in `app.js`, all styles in `style.css`. Adding any external resource requires updating both the CSP and the `_headers` file if needed.
 
+### Deployment Exclusions
+
+`CLAUDE.md` is listed in `.netlifyignore` and is not deployed to the public site. It exists in the repo for Claude Code only.
+
 ### Security Headers
 
 `_headers` (Netlify) applies to all routes: `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: no-referrer`, and `Permissions-Policy` disabling geolocation, camera, and microphone.
