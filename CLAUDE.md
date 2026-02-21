@@ -24,7 +24,7 @@ Run tests with:
 npm test
 ```
 
-Playwright browser tests — 6 tests covering ECC/RSA key generation, keyless generation, error display, button state, and error clearing. All run against a local static server (`npx serve`). No build steps or lint commands.
+Playwright browser tests — 7 tests covering ECC/RSA key generation, keyless generation, error display, button state, error clearing, and error clearing on email input. All run against a local static server (`npx serve`). No build steps or lint commands.
 
 ## Architecture
 
