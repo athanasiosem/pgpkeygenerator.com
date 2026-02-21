@@ -46,7 +46,7 @@ The site is intentionally minimal with no framework or bundler:
 
 ### Content Security Policy
 
-The CSP (`index.html` meta tag) is fully locked down: `script-src 'self'` and `style-src 'self'` — no `unsafe-inline` anywhere. `index.html` has zero inline styles and zero inline scripts. All JS is in `app.js`, all styles in `style.css`. Adding any external resource requires updating the CSP.
+The CSP (`index.html` meta tag) is fully locked down: `script-src 'self'` and `style-src 'self'` — no `unsafe-inline` anywhere, no external origins. `index.html` has zero inline styles and zero inline scripts. All JS is in `app.js`, all styles in `style.css`. Adding any external resource requires updating both the CSP and the `_headers` file if needed.
 
 ### Security Headers
 
