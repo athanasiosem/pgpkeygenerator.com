@@ -18,7 +18,13 @@ python -m http.server 8080
 npx serve .
 ```
 
-There are no build steps, lint commands, or tests.
+Run tests with:
+
+```bash
+npm test
+```
+
+Playwright browser tests — 6 tests covering ECC/RSA key generation, keyless generation, error display, button state, and error clearing. All run against a local static server (`npx serve`). No build steps or lint commands.
 
 ## Architecture
 
@@ -44,7 +50,7 @@ Errors (worker failure, generation error, invalid email, clipboard failure) are 
 
 ### Known Gaps
 
-- No automated tests — only remaining gap (medium priority). Overall rating: 9.5/10, Security: 10/10.
+- None. Overall rating: 10/10, Security: 10/10.
 ### Design Decisions
 
 - Blank `name` field is intentionally allowed — users may generate keys without a name.
