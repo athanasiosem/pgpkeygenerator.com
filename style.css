@@ -1,5 +1,5 @@
 body {
-    width: 780px;
+    max-width: 780px;
     margin: auto;
     background-color: #ffffff;
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='48' viewBox='0 0 60 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='fancy-rectangles' fill='%23efefef' fill-opacity='1'%3E%3Cpath d='M6 12h6v12H6V12zm12 0h6v12h-6V12zm6-12h6v12h-6V0zM12 0h6v12h-6V0zm0 24h6v12h-6V24zM0 0h6v12H0V0zm6 36h6v12H6V36zm12 0h6v12h-6V36zm12-12h6v12h-6V24zM42 0h6v12h-6V0zm-6 12h6v12h-6V12zm12 0h6v12h-6V12zM36 36h6v12h-6V36zm12 0h6v12h-6V36zm-6-12h6v12h-6V24zm12 0h6v12h-6V24z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -113,14 +113,29 @@ button {
     margin: 6px 0 0;
 }
 
+#main-content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+#title-and-parameters-holder {
+    flex: 1;
+}
+
+#keys-holder-parent {
+    flex: 1;
+}
+
 #keys-holder {
     padding: 0px 40px 20px 40px;
     border: 1px solid #272727;
     border-radius: 15px;
     background-color: #efefef;
     box-shadow: 4px 4px;
-    width: 340px;
-    float: right;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .copy-button {
@@ -154,7 +169,6 @@ button {
 }
 
 #copyright-holder {
-    clear: both;
     margin-top: 10px;
 }
 
@@ -280,63 +294,28 @@ html .popup-title {
     display: none;
 }
 
-#title-and-parameters-holder {
-    width: 340px;
-    float: left;
-}
-
 /* Mobile / Responsive */
 @media (max-width: 768px) {
     body {
-        width: 100%;
         padding: 10px;
     }
 
-    #keys-holder {
-        padding: 0px 40px 20px 40px;
-        border: 1px solid #272727;
-        border-radius: 15px;
-        background-color: #efefef;
-        box-shadow: 4px 4px;
-        width: 85%;
-        float: left;
+    #main-content {
+        flex-direction: column;
     }
 
-    #title-and-parameters-holder {
-        width: 85%;
-        float: left;
-    }
-
-    #title-holder {
-        width: 100%;
-    }
-
-    /* FAQ page specific override for title holder if needed, or rely on 100% */
     body>#title-holder {
-        width: 84%;
-    }
-
-    #parameters-holder {
         width: 100%;
+        box-sizing: border-box;
     }
 
     #faq-holder {
-        width: 84%;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     #copyright-holder {
-        margin-top: 10px;
         margin-bottom: 10px;
-        float: left;
-    }
-
-    #keys-holder-parent {
-        width: 85%;
-        float: left;
-    }
-
-    #webmcp-banner {
-        clear: both;
     }
 
     textarea {
@@ -345,13 +324,5 @@ html .popup-title {
 
     #keys-holder button {
         padding: 0.5rem 0.5rem;
-    }
-
-    .security-banner {
-        width: 85%;
-    }
-
-    #webmcp-banner {
-        width: 85%;
     }
 }
