@@ -18,6 +18,17 @@ const copyRevocationCertificateButton = document.querySelector("#copy-revocation
 const downloadPrivateKeyButton = document.querySelector("#download-private-key-button");
 const downloadPublicKeyButton = document.querySelector("#download-public-key-button");
 const downloadRevocationCertificateButton = document.querySelector("#download-revocation-certificate-button");
+const errorMessage = document.querySelector("#error-message");
+
+const showError = (msg) => {
+    errorMessage.textContent = msg;
+    errorMessage.hidden = false;
+};
+
+const clearError = () => {
+    errorMessage.hidden = true;
+    errorMessage.textContent = "";
+};
 
 const downloadFile = (element) => {
 
@@ -62,7 +73,7 @@ const worker = new Worker("worker.js");
 
 worker.onerror = (error) => {
     console.error("Worker error:", error);
-    alert("An error occurred with the background worker. Please reload the page.");
+    showError("An error occurred with the background worker. Please reload the page.");
     buttonGenerateKeys.disabled = false;
     buttonGenerateKeys.innerText = "Generate Keys";
 };
@@ -80,7 +91,7 @@ worker.onmessage = async function handleMessageFromMain(msg) {
             _mcpPendingReject = null;
             reject(new Error(msg.data.error));
         } else {
-            alert("Error generating keys: " + msg.data.error);
+            showError("Error generating keys: " + msg.data.error);
         }
         buttonGenerateKeys.disabled = false;
         buttonGenerateKeys.innerText = "Generate Keys";
@@ -144,9 +155,11 @@ const generateKeys = () => {
     };
 
     if (!optionsEmail.checkValidity()) {
-        alert('Please enter a valid email address.');
+        showError("Please enter a valid email address.");
         return;
     }
+
+    clearError();
 
     copyPrivateKeyButton.classList.remove("copy-button");
     copyPublicKeyButton.classList.remove("copy-button");
