@@ -325,6 +325,7 @@ html .popup-title {
 
     textarea {
         width: 100%;
+        box-sizing: border-box;
     }
 
     #keys-holder button {
