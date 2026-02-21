@@ -65,7 +65,9 @@ The CSP (`index.html` meta tag) is fully locked down: `script-src 'self'` and `s
 
 ### Deployment Exclusions
 
-`CLAUDE.md` is listed in `.netlifyignore` and is not deployed to the public site. It exists in the repo for Claude Code only.
+`CLAUDE.md` is blocked from public access via a `netlify.toml` redirect rule (`force = true`, status 404). It exists in the repo for Claude Code only but is not publicly served.
+
+Note: `.netlifyignore` only suppresses build triggers — it does NOT block files from being served. Use `netlify.toml` redirects for access control.
 
 ### Security Headers
 
