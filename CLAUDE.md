@@ -40,7 +40,7 @@ The site is intentionally minimal with no framework or bundler:
 4. Worker posts back `{ privateKey, publicKey, revocationCertificate }` (armored strings)
 5. Main thread populates the three textareas and enables copy/download buttons
 
-Errors (worker failure, generation error, invalid email) are shown via `showError()` in `app.js`, which populates the `#error-message` div in the HTML. No `alert()` is used anywhere.
+Errors (worker failure, generation error, invalid email, clipboard failure) are shown via `showError()` in `app.js`, which populates the `#error-message` div in the HTML. No `alert()` is used anywhere.
 
 ### Design Decisions
 
