@@ -34,11 +34,53 @@
 
     <script type="application/ld+json">
         {
-            "@context": "http://schema.org",
-            "@type": "WebSite",
-            "name": "PGPkeygenerator.com",
-            "url": "https://www.pgpkeygenerator.com/",
-            "description": "Generate OpenPGP keys online securely."
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "WebSite",
+                    "@id": "https://www.pgpkeygenerator.com/#website",
+                    "url": "https://www.pgpkeygenerator.com/",
+                    "name": "PGPkeygenerator.com",
+                    "description": "Open Source, free, online and secure PGP key generator.",
+                    "inLanguage": "en",
+                    "publisher": { "@id": "https://emman.dev/#person" }
+                },
+                {
+                    "@type": "WebApplication",
+                    "@id": "https://www.pgpkeygenerator.com/#webapp",
+                    "name": "PGPkeygenerator.com",
+                    "url": "https://www.pgpkeygenerator.com/",
+                    "description": "Free, open-source, client-side PGP key generator with WebMCP support — generate OpenPGP key pairs entirely in your browser.",
+                    "applicationCategory": "SecurityApplication",
+                    "operatingSystem": "Any (modern web browser)",
+                    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+                    "isAccessibleForFree": true,
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD"
+                    },
+                    "featureList": [
+                        "ECC and RSA key pair generation",
+                        "100% client-side execution — no server, no tracking",
+                        "Automatic revocation certificate generation",
+                        "Passphrase-protected private keys",
+                        "Configurable key expiration",
+                        "WebMCP API support for AI agents"
+                    ],
+                    "softwareVersion": "1.0",
+                    "license": "https://github.com/athanasiosem/pgpkeygenerator.com/blob/main/LICENSE",
+                    "codeRepository": "https://github.com/athanasiosem/pgpkeygenerator.com",
+                    "author": { "@id": "https://emman.dev/#person" },
+                    "creator": { "@id": "https://emman.dev/#person" }
+                },
+                {
+                    "@type": "Person",
+                    "@id": "https://emman.dev/#person",
+                    "name": "Athanasios Emmanouilidis",
+                    "url": "https://emman.dev"
+                }
+            ]
         }
     </script>
 

@@ -26,11 +26,85 @@
 
     <script type="application/ld+json">
         {
-            "@context": "http://schema.org",
-            "@type": "WebSite",
-            "name": "PGPkeygenerator.com",
-            "url": "https://www.pgpkeygenerator.com/",
-            "description": "Generate OpenPGP keys online securely."
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "name": "About PGP Encryption",
+            "url": "https://www.pgpkeygenerator.com/about-pgp-encryption.html",
+            "inLanguage": "en",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "What is PGP encryption, and why should I use it?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "PGP (Pretty Good Privacy) encryption is a method for securing your digital communications and data. It uses a pair of keys (public and private) to encrypt and decrypt messages, ensuring privacy and authenticity. You should use PGP encryption to protect sensitive information, emails, and files from unauthorized access."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How does PGP encryption work?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "PGP encryption works by using a recipient's public key to encrypt a message or file. The recipient then uses their private key to decrypt the content. This process ensures that only the intended recipient can read the message or access the file."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is a PGP key pair?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "A PGP key pair consists of two mathematically related keys. The Public Key is shared with others — people use it to encrypt messages they send to you. The Private Key must be kept secret — you use it to decrypt messages sent to you. Think of it like a mailbox: anyone can drop a letter in (Public Key), but only you have the key to open the box and read the mail (Private Key)."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How can I send encrypted messages using PGP encryption?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "To send an encrypted message, you need the recipient's public key. Use your email client or encryption tool to select the recipient's key and encrypt your message. The recipient can then use their private key to decrypt and read your message."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What should I do if I lose my private key or it gets compromised?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Losing your private key means you permanently lose access to any data encrypted with it. If your key is compromised (stolen), you must revoke it immediately to tell the world it is no longer safe. You need a Revocation Certificate to do this — PGPkeygenerator.com generates this certificate for you automatically. Be sure to save it safely alongside your private key."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is PGP encryption 100% secure?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "While PGP encryption is highly secure, no method is entirely immune to risks. It is essential to follow best practices, keep your private key safe, and verify the identity of the people you communicate with."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How can I verify the authenticity of a received PGP-encrypted message?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "You can verify a message by checking its digital signature. The sender signs the message using their private key. Your software then uses their public key to verify that signature. This proves the message actually came from them and has not been tampered with during transit."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is it safe to generate keys on this website?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. This website uses client-side generation. The mathematical calculations to create your keys happen entirely inside your web browser. Your private key is never sent to any server, and we never see it."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can AI agents use this tool?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. PGPkeygenerator.com supports the WebMCP API (navigator.modelContext), which lets AI agents and MCP-compatible clients call a generate_pgp_keys tool exposed by this page. Key generation still happens entirely client-side — no data leaves the browser, even when an AI agent initiates the request."
+                    }
+                }
+            ]
         }
     </script>
 

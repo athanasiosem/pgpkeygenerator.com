@@ -28,11 +28,77 @@
 
     <script type="application/ld+json">
         {
-            "@context": "http://schema.org",
-            "@type": "WebSite",
-            "name": "PGPkeygenerator.com",
-            "url": "https://www.pgpkeygenerator.com/",
-            "description": "Generate OpenPGP keys online securely."
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "name": "PGPkeygenerator.com FAQ",
+            "url": "https://www.pgpkeygenerator.com/faq.html",
+            "inLanguage": "en",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "How does PGPKeygenerator.com work?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "PGPKeygenerator.com is an open-source, client-side tool designed for privacy. It uses OpenPGP.js, a battle-tested open-source JavaScript library, to handle all cryptographic functions. All key generation happens directly in your browser — your private key, passphrase, and personal details never leave your device and are never sent to any server. The source code is publicly auditable on GitHub, and the site uses a strict no-logs policy: no IP tracking, no key storage, no activity monitoring."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is this service free?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. Encryption should be accessible to everyone. The tool is free to use for personal and commercial purposes. Donations are welcome to keep the project alive."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is it safe to generate PGP keys in a browser?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "We take every precaution (HTTPS, client-side execution), but browser-based cryptography has inherent risks compared to command-line tools. Malicious browser extensions or malware could potentially snoop on the browser window. We recommend using a clean browser profile (incognito/private window) with no extensions enabled to minimize this risk."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What happens if I lose my Private Key or Passphrase?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "PGP is designed to be impossible to break by force. If you lose your Private Key, you will lose access to all messages encrypted with your Public Key. If you forget your Passphrase, your Private Key becomes useless. Because we never store your data, we have no way to help you recover lost keys or passwords."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How do I generate a key pair?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "1) Choose your algorithm: RSA (legacy compatibility) or ECC (modern, faster, and more secure). 2) Enter the Name and Email you want associated with this key identity. 3) Set a strong passphrase — this encrypts your private key file so that if someone steals the file, they still cannot use it without your password. 4) Click Generate, then download your Public Key, Private Key, and Revocation Certificate. Store them all safely."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can I use these keys with other software?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. The keys generated here adhere to the OpenPGP standard (RFC 4880/9580) and are fully compatible with email clients (Thunderbird with Enigmail, Outlook with plugins, Apple Mail) and software such as GnuPG (GPG), Kleopatra, GPG4Win, and OpenKeychain."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Does this tool provide a Revocation Certificate?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. Unlike many other online tools, PGPKeygenerator.com automatically generates a revocation certificate for you alongside your keys. A revocation certificate is a special file used to invalidate your key if your Private Key is ever lost or stolen. Store this file in a separate, secure location (like an offline USB drive). Without it, you cannot warn the PGP network that a compromised key should no longer be trusted."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is WebMCP support and how can my AI agent use it?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "PGPkeygenerator.com implements the WebMCP API (navigator.modelContext), an emerging browser standard that allows web pages to expose tools to AI agents and MCP-compatible clients running in the browser. This page registers a generate_pgp_keys tool that any compatible AI agent can call to generate a PGP key pair entirely client-side — no server involved, no data leaves your browser. To test it, enable chrome://flags#webmcp-for-testing in Chrome Canary 146+, install the Model Context Tool Inspector extension, then invoke the generate_pgp_keys tool with parameters such as name and email."
+                    }
+                }
+            ]
         }
     </script>
 
