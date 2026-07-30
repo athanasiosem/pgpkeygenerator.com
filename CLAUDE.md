@@ -33,7 +33,7 @@ The site is intentionally minimal with no framework or bundler:
 - **`index.html`** — Main page UI markup only. No inline JS or event handler attributes.
 - **`app.js`** — All application JavaScript: DOM element references, key generation logic, clipboard/download helpers, event listeners, and WebMCP tool registration. Loaded with `defer`.
 - **`worker.js`** — Web Worker that loads the self-hosted `openpgp.min.js` and performs the actual key generation off the main thread. Communicates with `index.html` via `postMessage`.
-- **`openpgp.min.js`** — Vendored OpenPGP.js v6.3.0. To upgrade, download the new minified build from jsDelivr and replace this file.
+- **`openpgp.min.js`** — Vendored OpenPGP.js v6.3.1. To upgrade, download the new minified build from jsDelivr and replace this file.
 - **`style.css`** — Shared stylesheet used by all pages. Two-column flexbox layout via `#main-content` wrapper (`flex: 1` each side), stacks to single column on mobile via `@media (max-width: 768px)`.
 - **`faq.html`** — FAQ page including WebMCP documentation.
 - **`about-pgp-encryption.html`** — Educational page about PGP encryption.
@@ -42,7 +42,7 @@ The site is intentionally minimal with no framework or bundler:
 
 1. User fills in form fields in `index.html` and clicks "Generate Keys"
 2. `generateKeys()` posts an options object to the Web Worker (`worker.js`)
-3. `worker.js` calls `openpgp.generateKey(...)` using the self-hosted OpenPGP.js 6.3.0
+3. `worker.js` calls `openpgp.generateKey(...)` using the self-hosted OpenPGP.js 6.3.1
 4. Worker posts back `{ privateKey, publicKey, revocationCertificate }` (armored strings)
 5. Main thread populates the three textareas and enables copy/download buttons
 
